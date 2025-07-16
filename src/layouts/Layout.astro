@@ -1,5 +1,11 @@
 ---
-//  import './src/styles/global.css'
+import Background from "@components/Background.astro";
+interface Props {
+	title: string;
+	
+}
+
+const { title } = Astro.props;
 ---
 <!doctype html>
 <html lang="es">
@@ -8,11 +14,12 @@
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/developer-logo.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Pere Alemany | Full-Stack Developer</title>
+		<title>{title}</title>
 	</head>
-	<body class="bg-amber-950">
+	<body class="bg-azul overflow-x-hidden">
+		<Background />
 		<slot />
-		<p class="underline text-yellow-300">Todos los derechos reservados</p>
+		
 	</body>
 </html>
 

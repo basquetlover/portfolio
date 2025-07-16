@@ -2,8 +2,8 @@
 import { defineConfig } from 'astro/config';
 // @ts-ignore
 
-import tailwindcss from "@tailwindcss/vite";
-
+// import tailwindcss from "@tailwindcss/vite";
+import tailwind from "@astrojs/tailwind";
 import vercel from '@astrojs/vercel';
 // https://astro.build/config
 export default defineConfig({
@@ -11,8 +11,8 @@ export default defineConfig({
  enabled: false
 },
  adapter: vercel(),
-
-  vite: {
-    plugins: [tailwindcss()],
-  },
+integrations: [tailwind()],
+  // vite: {
+  //   plugins: [tailwindcss()],
+  // },
 });
