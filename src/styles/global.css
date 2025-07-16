@@ -1,0 +1,9 @@
+/* @import "tailwindcss"; */
+/* src/styles/global.css */
+/* ✅ Esto es lo correcto en Tailwind v4 */
+/* @import "tailwindcss"; */
+/* @import "tailwindcss/utilities"; */
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
