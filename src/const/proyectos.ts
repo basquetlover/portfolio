@@ -53,5 +53,36 @@ export const PROYECTOS = [
                 texto: 'Graficos de Estadisticas',
             }
         ]
+    },
+    {
+        nombre: 'TRB Pere Alemany',
+        id: 'trb-pere-alemany',
+        web: 'https://trb-pere-alemany.vercel.app',
+        descripcion: 'Esta web fue desarrollada como soporte digital para la presentación del trabajo de investigación "Diseño de un dron para eventos". Está pensada para facilitar la visualización de contenido científico de forma accesible, interactiva y atractiva.',
+        tecnologias:[
+            {
+                nombre: 'HTML',
+                id: 'html',
+            },
+            {
+                nombre: 'Css',
+                id: 'css',
+            },
+            {
+                nombre: 'JS',
+                id: 'js',
+            }
+        ],
+        funcionalidades: [
+            {
+                texto: 'Descarga de archivos',
+            },
+            {
+                texto: 'Visualización de documentos',
+            },
+            {
+                texto: 'Visualización modelos 3D interactivos',
+            }
+        ]
     }
 ]
