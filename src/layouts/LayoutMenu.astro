@@ -1,6 +1,7 @@
 ---
 import Background from "@components/Background.astro";
 import Footer from "@components/Footer.astro";
+import Menu from "@components/Menu.astro";
 interface Props {
 	title: string;
 	
@@ -18,12 +19,14 @@ const { title } = Astro.props;
 		<title>{title}</title>
 	</head>
 	<body class="bg-azul overflow-x-hidden">
-		
-		<main class="w-full  mx-auto  mb-10">
-			<slot />
-		</main>
+        <div class="grid min-h-dvh grid-rows-[auto_1fr_auto]">
+            <Menu />
+            <main class="w-full  mx-auto">
+                <slot />
+            </main>
 		<!-- <Background /> -->
 		<Footer />
+		</div>
 	</body>
 </html>
 

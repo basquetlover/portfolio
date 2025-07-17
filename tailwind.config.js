@@ -9,6 +9,9 @@ export default {
         rosa: '#fb8ad7',
         blanco: '#ffffff'
       },
+      screens: {
+		    'max-sm': { max: '800px' },
+		},
     },
   },
   plugins: [],

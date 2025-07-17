@@ -7,27 +7,35 @@ export const PROYECTOS = [
         tecnologias:[
             {
                 nombre: 'Astro',
-                id: 'astro',
+                logo: 'astro',
             },
             {
                 nombre: 'Tailwind',
-                id: 'tailwind',
+                logo: 'tailwindcss',
             },
             {
                 nombre: 'Typscript',
-                id: 'typscript',
+                logo: 'typescript',
             },
             {
                 nombre: 'Supabase',
-                id: 'supabase',
+                logo: 'supabase',
             },
             {
                 nombre: 'Vercel',
-                id: 'vercel',
+                logo: 'vercel',
             },
             {
                 nombre: 'Chart.js',
-                id: 'chart-js',
+                logo: 'chartjs',
+            },
+            {
+                nombre: 'React',
+                logo: 'react',
+            },
+            {
+                nombre: 'Resend',
+                logo: 'resend',
             },
         ],
         funcionalidades: [
@@ -61,16 +69,20 @@ export const PROYECTOS = [
         descripcion: 'Esta web fue desarrollada como soporte digital para la presentación del trabajo de investigación "Diseño de un dron para eventos". Está pensada para facilitar la visualización de contenido científico de forma accesible, interactiva y atractiva.',
         tecnologias:[
             {
-                nombre: 'HTML',
-                id: 'html',
+                nombre: 'HTML5',
+                logo: 'html5',
             },
             {
                 nombre: 'Css',
-                id: 'css',
+                logo: 'css',
             },
             {
-                nombre: 'JS',
-                id: 'js',
+                nombre: 'JavaScript',
+                logo: 'javascript',
+            },
+            {
+                nombre: 'Vercel',
+                logo: 'vercel',
             }
         ],
         funcionalidades: [

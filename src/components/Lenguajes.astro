@@ -1,0 +1,14 @@
+---
+import {LENGUAJES} from "@const/lenguajes"
+---
+<div class="max-w-6xl relative w-auto border-y-2 border-magenta py-6 flex flex-wrap gap-3  mx-auto place-content-center mt-10">
+    <h4 class="absolute -top-7 px-3 py-2 bg-azul font-semibold text-3xl text-magenta">Tecnologías</h4>
+    {
+    LENGUAJES.map(({ nombre, id }) => (
+        <div class="w-20 h-24  flex flex-col items-center">
+            <img src={`/iconos/${id}.svg`} class="w-16 h-16" alt={`Logo de ${nombre}`} />
+            <p class="text-center text-lg text-blanco font-medium">{nombre}</p>
+        </div>
+        ))
+    }
+</div>
