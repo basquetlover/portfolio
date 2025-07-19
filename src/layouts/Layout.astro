@@ -28,6 +28,12 @@ const { title } = Astro.props;
 		<meta property="og:site_name" content="Pere Alemany | Full-Stack Developer" />
 		<meta property="og:type" content="website" />
 		<meta property="og:locale" content="es_ES" />
+
+		<!-- Twitter Meta Tags -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content="Portfolio de Pere Alemany, desarrollador full-stack. Proyectos web modernos con React, Astro, Tailwind, Supabase y más." />
+		<meta name="twitter:image" content="/og_porfolio.png" />
 	</head>
 	<body class="bg-azul overflow-x-hidden">
 		
