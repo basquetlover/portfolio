@@ -1,6 +1,5 @@
 export const LENGUAJES = [
-    
-    {
+     {
         nombre: 'Astro',
         id: 'astro',
     },
