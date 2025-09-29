@@ -5,7 +5,7 @@ import {PROYECTOS} from "@const/proyectos"
     <h3 class="text-3xl font-semibold text-blanco  max-sm:ml-10">Proyectos</h3>
     <div class="flex flex-wrap gap-2 text-azul p-2 mt-4 max-sm:place-content-center">
         
-        {PROYECTOS.map(({ nombre, id, descripcion, web }) => (
+        {PROYECTOS.map(({ nombre, id, descripcion, web, github }) => (
             <div id={id} class="w-96 h-96 bg-blanco rounded-lg  group">
                 <img src={`/portadas/${id}.png`} alt={`Portada de la web ${nombre}`} class="w-full rounded-t-lg h-52 object-cover"/>
                 <div class="p-2">
@@ -25,6 +25,13 @@ import {PROYECTOS} from "@const/proyectos"
                             </svg>
                             Más informacion
                         </a>
+                        {
+                            github !== '' ? (<>
+                            <a href={github} target="_blank" class="flex flex-row items-center place-content-center gap-x-1 px-2 py-2 rounded-lg bg-black">
+                                <img src={`/iconos/github_dark.svg`} class="w-6 h-6" alt={`Logo de Github`} />
+                            </a>
+                            </>) : (<></>)
+                        }
                     </div>
                 </div>
                 
