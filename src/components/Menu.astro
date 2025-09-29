@@ -1,12 +1,44 @@
-<header class="w-[98%] border-b border-magenta grid grid-cols-[auto_1fr_auto] mx-auto place-items-center gap-4 p-2">
-    <a href="/" class="w-12 h-12">
-        <img src="developer-logo.svg" class="w-12 h-12" alt="Logo"/>
-    </a>
-    <div class="flex flex-row font-semibold text-center text-blanco gap-x-2 text-2xl">
-        <h3>Pere Alemany</h3>
-        <span>|</span>
-		<h2><span class="text-magenta">Full-Stack</span> DEVELOPER</h2>
+---
+import {PROYECTOS} from "@const/proyectos"
+---
+<header class="w-[98%] border-b border-magenta grid grid-cols-[max-content_1fr_max-content] place-items-center mx-auto  gap-4 p-2">
+   
+    <div class="flex flex-row font-semibold items-center text-center text-blanco gap-x-2 text-2xl">
+         <a href="/" class="w-12 h-12">
+            <img src="developer-logo.svg" class="w-12 h-12" alt="Logo"/>
+        </a>
+        <div class="w-max h-auto flex flex-col items-start">
+             <h3 class="text-3xl">Pere Alemany</h3>
+            <!-- <span>|</span> -->
+            <h2 class="text-lg"><span class="text-magenta">Full-Stack</span> DEVELOPER</h2>
+        </div>
+       
     </div>
+    <nav class="flex px-4 gap-x-6 text-blanco font-semibold text-lg w-full z-50">
+        <a href="/" class="cursor-pointer hover:text-magenta duration-300" >
+            Inicio
+        </a>
+        <div class="flex flex-col group">
+
+            <div  class="flex flex-row gap-x-1 items-center cursor-pointer fill-blanco group relative group-hover:text-rosa group-hover:fill-rosa duration-300">
+                <p>Proyectos</p>
+                <span class="flex justify-center w-6 h-6 ">  
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                        <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/>
+                    </svg>
+                </span>
+            </div>
+            <div class="h-auto hidden absolute top-14 group-hover:flex flex-col bg-blanco rounded-md p-2 shadow-lg shadow-black/30">
+                <ul class="flex flex-col gap-y-2">
+                     {PROYECTOS.map(({ nombre, id, descripcion, web }) => (
+                        <li class="bg-blanco text-azul rounded-md p-2 w-48 opacity-0 group-hover:opacity-100 duration-300 z-10 hover:bg-magenta hover:text-blanco">
+                            <a href={`/${id}`} class="w-full h-full block">{nombre}</a>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </div>
+    </nav>
     <!-- <p class="flex gap-x-2 px-3 py-2 rounded-full border-[1px] text-blanco border-magenta w-max text-lg items-center place-content-center"><span class="w-4 h-4 bg-green-600 rounded-full"></span>Disponible</p> -->
     <p class="flex gap-x-2 px-3 py-2 rounded-full border-[1px] border-magenta w-max text-blanco text-xl items-center place-content-center mt-5 mx-auto"><span class="w-4 h-4 bg-red-600 rounded-full"></span>No Disponible</p>
     
