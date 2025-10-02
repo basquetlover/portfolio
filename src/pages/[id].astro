@@ -47,16 +47,32 @@ if (!proyecto) {
          {
               proyecto.github !== '' ? (<>
               <a href={proyecto.github} target="_blank" class="flex flex-row items-center place-content-center gap-x-1 px-3 py-3 rounded-lg bg-black">
-                  <img src={`/iconos/github_dark.svg`} class="w-6 h-6" alt={`Logo de Github`} />
+                  <img src={`/github.svg`} class="w-6 h-6" alt={`Logo de Github`} />
               </a>
               </>) : (<></>)
           }
             </div>
     </div>
-    <div class="w-full">
+    <div class="relative w-full max-w-5xl">
+  <!-- Fondo / Loader -->
+  <div id="loader" class="absolute inset-0 flex w-full h-full items-center justify-center bg-rosa bg-opacity-60 backdrop-blur-md rounded-lg">
+    <span class="animate-pulse text-magenta">Cargando...</span>
+  </div>
+
+  <!-- Iframe oculto hasta que cargue -->
+  <iframe
+    src={proyecto.web}
+    class="w-full h-96 rounded-lg hidden"
+    frameborder="0"
+    allowfullscreen
+    onload="this.classList.remove('hidden'); document.getElementById('loader').classList.add('hidden');"
+  ></iframe>
+</div>
+
+    <!-- <div class="w-full">
         <iframe src={proyecto.web} class="max-w-5xl w-full h-96 rounded-lg" frameborder="0" allowfullscreen></iframe>
         
-    </div>
+    </div> -->
   </div>
  
   

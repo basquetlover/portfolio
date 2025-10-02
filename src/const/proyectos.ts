@@ -2,7 +2,7 @@ export const PROYECTOS = [
     {
         nombre: 'IES Calvià Voley Tournament',
         id: 'ies-calvia-voley-tournament',
-        web: 'https://iescalvia-voley.com',
+        web: 'https://voley.iescalvia.com',
         github: '',
         descripcion: 'Plataforma desarrollada para organizar un torneo escolar de voleibol. Permite inscripciones, seguimiento de partidos en directo, actas digitales, estadísticas automáticas y paneles de administración para árbitros y organizadores.',
         tecnologias:[
