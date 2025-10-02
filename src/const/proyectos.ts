@@ -5,6 +5,7 @@ export const PROYECTOS = [
         web: 'https://voley.iescalvia.com',
         github: '',
         descripcion: 'Plataforma desarrollada para organizar un torneo escolar de voleibol. Permite inscripciones, seguimiento de partidos en directo, actas digitales, estadísticas automáticas y paneles de administración para árbitros y organizadores.',
+        estado: 'En Producción',
         tecnologias:[
             {
                 nombre: 'Astro',
@@ -69,6 +70,7 @@ export const PROYECTOS = [
         web: 'https://trb-pere-alemany.vercel.app',
         github: 'https://github.com/basquetlover/TRB---Pere-Alemany',
         descripcion: 'Esta web fue desarrollada como soporte digital para la presentación del trabajo de investigación "Diseño de un dron para eventos". Está pensada para facilitar la visualización de contenido científico de forma accesible, interactiva y atractiva.',
+        estado: 'En Producción',
         tecnologias:[
             {
                 nombre: 'HTML5',

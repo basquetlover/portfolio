@@ -88,11 +88,14 @@ const proyectos = PROYECTOS.filter(proyecto =>
     <h3 class="text-3xl font-bold text-rosa  max-sm:ml-10">Proyectos con {lenguaje.nombre}</h3>
     <div class="flex flex-wrap gap-2 text-azul p-2 mt-4 max-sm:place-content-center">
         
-        {proyectos.map(({ nombre, id, descripcion, web, github }) => (
+        {proyectos.map(({ nombre, id, descripcion, web, github, estado }) => (
             <div id={id} class="w-96 h-96 bg-blanco rounded-lg  group">
                 <img src={`/portadas/${id}.png`} alt={`Portada de la web ${nombre}`} class="w-full rounded-t-lg h-52 object-cover"/>
                 <div class="p-2">
-                    <h4 class="text-xl text-magenta font-medium">{nombre}</h4>
+                                        <div class="w-full grid grid-cols-[1fr_auto] gap-x-2">
+                         <h4 class="text-xl w-max text-magenta font-medium">{nombre}</h4>
+                         <h5 class={`text-sm flex flex-row items-center font-medium gap-x-1 w-full ${estado === "En Producción" ? 'text-green-600':''}`}><span class={`w-[6px] h-[6px] inline-block rounded-full ${estado === "En Producción" ? 'bg-green-600':''}`}>&nbsp;</span>{estado}</h5>
+                    </div>
                     <p class="maximo-lines">{descripcion}</p>
 
                     <div class="flex flex-row gap-x-2 mt-3">
