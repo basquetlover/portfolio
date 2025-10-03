@@ -1,8 +1,29 @@
 ---
 import {PROYECTOS} from "@const/proyectos"
 ---
-<header class="w-full h-[100dvh] border-b border-magenta grid grid-row-[max-content_1fr_max-content] fixed z-50 bg-azul place-items-center mx-auto  gap-4 p-2">
-   
+<header  class="w-full h-16 border-b border-magenta  grid grid-cols-[auto_1fr_auto] bg-azul z-50 mx-auto  gap-4 p-2 max-lg:flex max-lg:justify-between max-lg:px-4 lg:hidden">
+    <div class="flex flex-row font-semibold items-center text-center text-blanco gap-x-2 text-2xl">
+         <a href="/" class="w-10 h-10">
+            <img src="/developer-logo.svg" class="w-10 h-10" alt="Logo"/>
+        </a>
+    </div>
+         <!-- <p class="flex gap-x-2 px-3 py-2 rounded-full border-[1px] text-blanco border-magenta w-max text-lg items-center place-content-center"><span class="w-4 h-4 bg-green-600 rounded-full"></span>Disponible</p> -->
+    <p class="flex gap-x-2 px-3 py-2 rounded-full border-[1px] border-magenta w-max text-blanco text-xl items-center place-content-center  mx-auto"><span class="w-4 h-4 bg-red-600 rounded-full"></span>No Disponible</p>
+    
+        <div id="abrir-mob" class="w-10 h-10 cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 fill-blanco" viewBox="0 -960 960 960">
+                <path d="M120-200v-80h720v80H120Zm0-160v-80h720v80H120Zm0-160v-80h720v80H120Z"/>
+            </svg>
+        </div>    
+        
+
+</header>
+<header id="menu-mob" class="w-full  h-screen border-b border-magenta fixed hidden grid-row-[max-content_1fr_max-content]  z-50 bg-azul place-items-center mx-auto  gap-4 p-2">
+    <div id="cerrar-mob" class="w-10 h-10 absolute top-5 right-5">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 fill-rosa" viewBox="0 -960 960 960">
+            <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+        </svg>
+    </div>
     <div class="flex flex-col font-semibold items-center text-center text-blanco gap-x-2 text-2xl">
          <a href="/" class="w-12 h-12">
             <img src="/developer-logo.svg" class="w-12 h-12" alt="Logo"/>
@@ -47,3 +68,19 @@ import {PROYECTOS} from "@const/proyectos"
     <p class="flex gap-x-2 px-3 py-2 rounded-full border-[1px] border-magenta w-max text-blanco text-xl items-center place-content-center mt-5 mx-auto"><span class="w-4 h-4 bg-red-600 rounded-full"></span>No Disponible</p>
     
 </header>
+
+<script>
+    console.log("Script menu mob loaded");
+    const menu = document.getElementById('menu-mob')!;
+    const abrir = document.getElementById('abrir-mob')!;
+    const cerrar = document.getElementById('cerrar-mob')!;
+
+    cerrar.addEventListener('click', () => {
+        menu.classList.remove('grid')
+        menu.classList.add('hidden')
+    });
+    abrir.addEventListener('click', () => {
+        menu.classList.add('grid')
+        menu.classList.remove('hidden')
+    });
+</script>
