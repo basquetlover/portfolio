@@ -25,7 +25,17 @@ if (!proyecto) {
                             </svg>
                             Volver atras
     </a>
+    <div>
+
   <h1 class="text-6xl font-bold text-magenta">{proyecto.nombre}</h1>
+  <div class="flex flex-row gap-x-2 my-1">
+                    {proyecto.tipo_web && proyecto.tipo_web.length > 0 && (
+                        <span class="text-xl text-rosa font-medium">
+                            {proyecto.tipo_web.map(({ tipo }) => tipo).join(" + ")}
+                        </span>
+                        )}
+                    </div>
+                  </div>
   <div class="w-full grid grid-cols-2 max-sm:grid-cols-1 max-sm:grid-rows-2 place-items-center">
     <div>
         <p class="text-lg">{proyecto.descripcion}</p>

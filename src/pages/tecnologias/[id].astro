@@ -35,9 +35,14 @@ const proyectos = PROYECTOS.filter(proyecto =>
                             </svg>
                             Volver atras
     </a>
-    <div class="relative">
-     <h1 class="text-6xl font-bold text-magenta flex flex-row gap-x-2 items-end">{lenguaje.nombre} {lenguaje.siglas_significado && <span class="text-4xl text-rosa first-letter:uppercase">{lenguaje.siglas_significado}</span>}</h1>
-     <h2 class="text-2xl font-semibold text-rosa first-letter:uppercase">{lenguaje.subcategoria}</h2>
+    <div class="w-max grid grid-cols-2 gap-4">
+        <div class="relative">
+        <h1 class="text-6xl font-bold text-magenta flex flex-row gap-x-2 items-end"><a href={lenguaje.web} target="_blank" class="hover:underline duration-300">{lenguaje.nombre} {lenguaje.siglas_significado && <span class="text-4xl text-rosa first-letter:uppercase">{lenguaje.siglas_significado}</span>}</a></h1>
+        <h2 class="text-2xl mt-2 font-semibold text-rosa first-letter:uppercase">{lenguaje.subcategoria}</h2>
+        </div>
+        <div>
+            <img src={`/iconos/${lenguaje.id}.svg`} alt={`Logo de ${lenguaje.nombre}`} class="w-24 h-24"/>
+        </div>
     </div>
   
   {
@@ -75,10 +80,12 @@ const proyectos = PROYECTOS.filter(proyecto =>
                         <code>
                             {texto}
                     </code></pre>
+                    
                 ))}
                 </>):(<></>)
             }
         </div>
+       
       </section>
       
     ))
@@ -86,15 +93,22 @@ const proyectos = PROYECTOS.filter(proyecto =>
 
 <section class="max-w-7xl h-auto mx-auto mt-5">
     <h3 class="text-3xl font-bold text-rosa  max-sm:ml-10">Proyectos con {lenguaje.nombre}</h3>
-    <div class="flex flex-wrap gap-2 text-azul p-2 mt-4 max-sm:place-content-center">
+    <div class="flex flex-wrap gap-2 text-azul p-2 mt-4 max-sm:place-content-center">  
         
-        {proyectos.map(({ nombre, id, descripcion, web, github, estado }) => (
-            <div id={id} class="w-96 h-96 bg-blanco rounded-lg  group">
+        {proyectos.map(({ nombre, id, descripcion, web, github, estado, tipo_web }) => (
+            <div id={id} class="w-96 h-auto bg-blanco rounded-lg  group">
                 <img src={`/portadas/${id}.png`} alt={`Portada de la web ${nombre}`} class="w-full rounded-t-lg h-52 object-cover"/>
                 <div class="p-2">
                                         <div class="w-full grid grid-cols-[1fr_auto] gap-x-2">
                          <h4 class="text-xl w-max text-magenta font-medium">{nombre}</h4>
                          <h5 class={`text-sm flex flex-row items-center font-medium gap-x-1 w-full ${estado === "En Producción" ? 'text-green-600':''}`}><span class={`w-[6px] h-[6px] inline-block rounded-full ${estado === "En Producción" ? 'bg-green-600':''}`}>&nbsp;</span>{estado}</h5>
+                    </div>
+                    <div class="flex flex-row gap-x-2 my-1">
+                    {tipo_web && tipo_web.length > 0 && (
+                        <span class="text-sm text-rosa font-medium">
+                            {tipo_web.map(({ tipo }) => tipo).join(" + ")}
+                        </span>
+                        )}
                     </div>
                     <p class="maximo-lines">{descripcion}</p>
 

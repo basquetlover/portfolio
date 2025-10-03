@@ -556,6 +556,119 @@ export const LENGUAJES_INFO = [
         categoria: 'frontend',
         subcategoria: 'librería de gráficos',
         descripcion: 'Librería de JavaScript sencilla y flexible para crear gráficos interactivos y visualizaciones de datos en aplicaciones web, compatible con una amplia variedad de tipos de gráficos.',
+        apartados:[
+            {
+                tipo: 'parrafo',
+                titulo: '¿Qué es Chart.js?',
+                contenido: [
+                    {
+                        texto: `Chart.js es una librería de JavaScript que permite crear gráficos interactivos y visualizaciones de datos en aplicaciones web de manera sencilla y flexible.`
+                    },
+                    {
+                        texto: `🎨 Soporta gráficos de líneas, barras, pastel, radar y más, con animaciones y personalización completa.`
+                    }
+                ]
+            },
+            {
+                tipo: 'lista',
+                titulo: 'Características principales',
+                contenido: [
+                    {
+                        texto: `📈 Gráficos interactivos → animaciones y eventos de hover/click.`
+                    },
+                    {
+                        texto: `🎨 Personalización completa → colores, estilos, etiquetas y más.`
+                    },
+                    {
+                        texto: `🔄 Responsive → se adapta automáticamente a distintos tamaños de pantalla.`
+                    },
+                    {
+                        texto: `🛠 Fácil integración → funciona con HTML, Canvas y frameworks como React, Vue o Angular.`
+                    },
+                    {
+                        texto: `📦 Módulos extensibles → plugins y soporte para gráficos avanzados.`
+                    }
+                ]
+            },
+            {
+                tipo: 'codigo',
+                titulo: 'Ejemplo básico 📂',
+                contenido: [{
+                    texto: `
+    <canvas id="miGrafico" width="400" height="200"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+    const ctx = document.getElementById('miGrafico').getContext('2d');
+    const miGrafico = new Chart(ctx, {
+        type: 'bar', // tipo de gráfico: bar, line, pie...
+        data: {
+        labels: ['Enero', 'Febrero', 'Marzo', 'Abril'],
+        datasets: [{
+            label: 'Ventas',
+            data: [12, 19, 3, 5],
+            backgroundColor: 'rgba(54, 162, 235, 0.5)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+        }]
+        },
+        options: {
+        responsive: true,
+        plugins: {
+            legend: { display: true },
+            tooltip: { enabled: true }
+        }
+        }
+    });
+    </script>
+                    `
+                }]
+            },
+            {
+                tipo: 'lista',
+                titulo: 'Tipos de gráficos disponibles',
+                contenido: [
+                    {
+                        texto: `Gráfico de líneas`
+                    },
+                    {
+                        texto: `Gráfico de barras`
+                    },
+                    {
+                        texto: `Gráfico circular`
+                    },
+                    {
+                        texto: `Gráfico de radar`
+                    },
+                    {
+                        texto: `Gráfico de dispersión`
+                    },
+                    {
+                        texto: `Gráfico de área`
+                    }
+                ]
+            },
+            {
+                tipo: 'lista',
+                titulo: 'Ventajas de Chart.js',
+                contenido: [
+                    {
+                        texto: `✅ Fácil de usar e integrar`
+                    },
+                    {
+                        texto: `✅ Gráficos interactivos y responsivos`
+                    },
+                    {
+                        texto: `✅ Amplia variedad de tipos de gráficos`
+                    },
+                    {
+                        texto: `✅ Personalización completa`
+                    },
+                    {
+                        texto: `✅ Compatible con cualquier framework o proyecto vanilla JS`
+                    }
+                ]
+            }
+        ]
     },
     {
         nombre: 'React',
@@ -563,6 +676,80 @@ export const LENGUAJES_INFO = [
         web: 'https://react.dev',
         categoria: 'frontend',
         descripcion: 'Biblioteca de JavaScript para construir interfaces de usuario, que permite crear componentes reutilizables y gestionar el estado de la aplicación de manera eficiente.',
+        apartados: [
+            {
+                tipo: 'parrafo',
+                titulo: '¿Qué es React?',
+                contenido: [
+                    {
+                        texto: `React es una biblioteca de JavaScript desarrollada por Facebook para construir interfaces de usuario (UI) de manera eficiente y declarativa.`
+                    },
+                    {
+                        texto: `🚀 Facilita el desarrollo de aplicaciones web SPA (Single Page Applications) y se integra con herramientas modernas como Tailwind CSS, TypeScript y Astro.`
+                    }
+                ]
+            },
+            {
+                tipo: 'lista',
+                titulo: 'Características principales',
+                contenido: [
+                    {
+                        texto: `🏗 Componentes reutilizables → divide la UI en piezas independientes y mantenibles.`
+                    },
+                    {
+                        texto: `🔄 Virtual DOM → actualiza solo lo necesario, mejorando el rendimiento.`
+                    },
+                    {
+                        texto: `⚡ Declarativo → describe cómo debe lucir la UI y React se encarga de actualizarla.`
+                    },
+                    {
+                        texto: `🌐 Ecosistema moderno → Hooks, Context, Router, State Management.`
+                    },
+                    {
+                        texto: `🛠 Integración sencilla → compatible con librerías y frameworks frontend y backend.`
+                    }
+                ]
+            },
+            {
+                tipo: 'codigo',
+                titulo: 'Ejemplo básico 📂',
+                contenido: [
+                    {
+                        texto: `
+    import React from 'react';
+    import ReactDOM from 'react-dom/client';
+
+    function App() {
+    const nombre = "Mundo";
+    return <h1>¡Hola, {nombre}! ⚛️</h1>;
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+
+                        `
+                    }
+                ]
+            },
+            {
+                tipo: 'lista',
+                titulo: 'Ventajas de React',
+                contenido: [
+                    {
+                        texto: `✅ Desarrollo rápido con componentes reutilizables`
+                    },
+                    {
+                        texto: `✅ Excelente rendimiento con Virtual DOM`
+                    },
+                    {
+                        texto: `✅ Fácil integración con tecnologías modernas`
+                    },
+                    {
+                        texto: `✅ Ideal para aplicaciones web SPA y móviles (React Native)`
+                    }
+                ]
+            }
+        ]
     },
     {
         nombre: 'Node.js',
@@ -570,6 +757,81 @@ export const LENGUAJES_INFO = [
         web: 'https://nodejs.org',
         categoria: 'backend',
         descripcion: 'Entorno de ejecución de JavaScript del lado del servidor, que permite construir aplicaciones escalables y de alto rendimiento utilizando un modelo de E/S no bloqueante y orientado a eventos.',
+        apartados: [
+            {
+                tipo: 'parrafo',
+                titulo: '¿Qué es Node.js?',
+                contenido: [
+                    {
+                        texto: `Node.js es un entorno de ejecución de JavaScript del lado del servidor basado en el motor V8 de Chrome. Permite construir aplicaciones escalables y de alto rendimiento utilizando un modelo de E/S no bloqueante y orientado a eventos.`
+                    },
+                    {
+                        texto: `🚀 Ideal para aplicaciones web en tiempo real, APIs y servicios backend.`
+                    }
+                ]
+            },
+            {
+                tipo: 'lista',
+                titulo: 'Características principales',
+                contenido: [
+                    {
+                        texto: `⚡ Event-driven y non-blocking I/O → alta eficiencia y escalabilidad.`
+                    },
+                    {
+                        texto: `🌐 Basado en V8 → motor de JavaScript de Google Chrome, rápido y confiable.`
+                    },
+                    {
+                        texto: `🛠 NPM → gestor de paquetes con miles de librerías disponibles.`
+                    },
+                    {
+                        texto: `🔄 Tiempo real → ideal para WebSockets y aplicaciones en tiempo real.`
+                    },
+                    {
+                        texto: `📦 Cross-platform → funciona en Windows, macOS y Linux.`
+                    }
+                ]
+            },
+            {
+                tipo: 'codigo',
+                titulo: 'Ejemplo básico 📂',
+                contenido: [
+                    {
+                        texto: `
+    const http = require('http');
+
+    const server = http.createServer((req, res) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/plain');
+    res.end('¡Hola desde Node.js! 🟢');
+    });
+
+    server.listen(3000, () => {
+    console.log('Servidor corriendo en http://localhost:3000');
+    });
+
+                        `
+                    }
+                ]
+            },
+            {
+                tipo: 'lista',
+                titulo: 'Ventajas de Node.js',
+                contenido: [
+                    {
+                        texto: `✅ Alta escalabilidad y rendimiento`
+                    },
+                    {
+                        texto: `✅ Gran ecosistema de librerías con NPM`
+                    },
+                    {
+                        texto: `✅ Ideal para aplicaciones en tiempo real`
+                    },
+                    {
+                        texto: `✅ Permite usar JavaScript en frontend y backend`
+                    },
+                ]
+            }
+        ]
     },
     {
         nombre: 'HTML5',
@@ -578,6 +840,92 @@ export const LENGUAJES_INFO = [
         web: 'https://developer.mozilla.org/es/docs/Web/HTML',
         categoria: 'frontend',
         descripcion: 'Lenguaje de marcado estándar para la creación de páginas web, que introduce nuevas características y elementos para mejorar la estructura, presentación y funcionalidad del contenido web.',
+        apartados: [
+            {
+                tipo: 'parrafo',
+                titulo: '¿Qué es HTML5?',
+                contenido: [
+                    {
+                        texto: `HTML5 es la quinta versión del lenguaje de marcado HTML, utilizado para estructurar y presentar contenido en la web. Introduce nuevas características y elementos que mejoran la semántica, multimedia y accesibilidad de las páginas web.`
+                    },
+                    {
+                        texto: `🌐 Es la base de cualquier sitio web moderno, trabajando en conjunto con CSS y JavaScript.`
+                    }
+                ]
+            },
+            {
+                tipo: 'lista',
+                titulo: 'Características principales',
+                contenido: [
+                    {
+                        texto: `🏷 Semántica → <header>, <footer>, <article>, <section>, <nav>.`
+                    },
+                    {
+                        texto: `🎥 Soporte nativo para multimedia → <video>, <audio>, <canvas>.`
+                    },
+                    {
+                        texto: `🛠 Formularios mejorados → nuevos tipos de input y validación.`
+                    },
+                    {
+                        texto: `🔄 APIs integradas → Geolocalización, almacenamiento local, arrastrar y soltar.`
+                    },
+                    {
+                        texto: `📱 Diseño responsivo → mejor soporte para dispositivos móviles.`
+                    }
+                ]
+            },
+            {
+                tipo: 'codigo',
+                titulo: 'Ejemplo básico 📂',
+                contenido: [
+                    {
+                        texto: `
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi página HTML5</title>
+    </head>
+    <body>
+    <header>
+        <h1>🌟 Bienvenido a HTML5 🌟</h1>
+    </header>
+    <main>
+        <section>
+        <h2>Sección principal</h2>
+        <p>Contenido relevante aquí</p>
+        </section>
+    </main>
+    <footer>
+        <p>© 2025 Mi sitio web</p>
+    </footer>
+    </body>
+    </html>
+
+                        `
+                    }
+                ]
+            },
+            {
+                tipo: 'lista',
+                titulo: 'Ventajas de HTML5',
+                contenido: [
+                    {
+                        texto: `✅ Estructura semántica clara`
+                    },
+                    {
+                        texto: `✅ Soporte nativo para multimedia`
+                    },
+                    {
+                        texto: `✅ Mejor accesibilidad y SEO`
+                    },
+                    {
+                        texto: `✅ Compatible con dispositivos móviles y diseño responsivo`
+                    }
+                ]
+            }
+        ]
     },
     {
         nombre: 'CSS',
@@ -586,6 +934,79 @@ export const LENGUAJES_INFO = [
         web: 'https://developer.mozilla.org/es/docs/Web/CSS',
         categoria: 'frontend',
         descripcion: 'Lenguaje de estilos utilizado para describir la presentación de documentos HTML, permitiendo controlar el diseño, colores, fuentes y disposición de los elementos en una página web.',
+        apartados: [
+            {
+                tipo: 'parrafo',
+                titulo: '¿Qué es CSS?',
+                contenido: [
+                    {
+                        texto: `CSS (Cascading Style Sheets) es un lenguaje de estilos utilizado para describir la presentación y el diseño de documentos HTML. Permite controlar aspectos visuales como colores, fuentes, márgenes, disposición y animaciones de los elementos en una página web.`
+                    },
+                    {
+                        texto: `🎨 Trabaja en conjunto con HTML y JavaScript para crear experiencias web atractivas y funcionales.`
+                    }
+                ]
+            },
+            {
+                tipo: 'lista',
+                titulo: 'Características principales',
+                contenido: [
+                    {
+                        texto: `🎨 Estilos y diseño → controla colores, fuentes, tamaños, márgenes, padding.`
+                    },
+                    {
+                        texto: `📐 Layouts → Flexbox, Grid, posicionamiento y diseño responsivo.`
+                    },
+                    {
+                        texto: `🔄 Cascada y herencia → reglas que determinan cómo se aplican los estilos.`
+                    },
+                    {
+                        texto: `🛠 Selectores avanzados → clases, IDs, atributos, pseudo-clases y pseudo-elementos.`
+                    },
+                    {
+                        texto: `⚡ Animaciones y transiciones → efectos visuales sin JavaScript.`
+                    }
+                ]
+            },
+            {
+                tipo: 'codigo',
+                titulo: 'Ejemplo básico 📂',
+                contenido: [
+                    {
+                        texto: `
+    body {
+    background-color: #f0f0f0; /* fondo gris claro */
+    font-family: Arial, sans-serif; /* tipografía */
+    color: #333; /* color de texto */
+    }
+
+    h1 {
+    color: #ff5733; /* color naranja */
+    text-align: center; /* centrado */
+    }
+                        `
+                    }
+                ]
+            },
+            {
+                tipo: 'lista',
+                titulo: 'Ventajas de CSS',
+                contenido: [
+                    {
+                        texto: `✅ Separación de contenido y presentación`
+                    },
+                    {
+                        texto: `✅ Control total sobre el diseño y estilo`
+                    },
+                    {
+                        texto: `✅ Diseño responsivo para dispositivos móviles`
+                    },
+                    {
+                        texto: `✅ Animaciones y efectos visuales`
+                    }
+                ]
+            }
+        ]
     },
     {
         nombre: 'JavaScript',
@@ -593,6 +1014,79 @@ export const LENGUAJES_INFO = [
         web: 'https://developer.mozilla.org/es/docs/Web/JavaScript',
         categoria: 'full stack',
         descripcion: 'Lenguaje de programación interpretado, ampliamente utilizado para el desarrollo web, que permite crear contenido dinámico e interactivo en el navegador y en el servidor.',
+        apartados: [
+            {
+                tipo: 'parrafo',
+                titulo: '¿Qué es JavaScript?',
+                contenido: [
+                    {
+                        texto: `JavaScript (JS) es un lenguaje de programación interpretado, ampliamente utilizado para el desarrollo web. Permite crear contenido dinámico e interactivo en el navegador, así como aplicaciones del lado del servidor con Node.js.`
+                    },
+                    {
+                        texto: `🚀 Funciona tanto en el navegador (frontend) como en servidores con Node.js (backend).`
+                    }
+                ]
+            },
+            {
+                tipo: 'lista',
+                titulo: 'Características principales',
+                contenido: [
+                    {
+                        texto: `⚡ Lenguaje interpretado → no requiere compilación previa.`
+                    },
+                    {
+                        texto: `🌐 Funciona en navegadores y servidores (Node.js).`
+                    },
+                    {
+                        texto: `🛠 Soporte para programación orientada a objetos, funcional y basada en eventos.`
+                    },
+                    {
+                        texto: `🔄 Manipulación del DOM → interactúa con elementos HTML y CSS.`
+                    },
+                    {
+                        texto: `📦 Amplio ecosistema → miles de librerías y frameworks (React, Vue, Angular, etc.).`
+                    }
+                ]
+            },
+            {
+                tipo: 'codigo',
+                titulo: 'Ejemplo básico 📂',
+                contenido: [
+                    {
+                        texto: `
+    // Saludo en la consola
+    const nombre = "Mundo";
+    console.log("¡Hola, {nombre}! 🌟");
+
+    // Función para sumar números
+    function suma(a, b) {
+    return a + b;
+    }
+
+    console.log(suma(5, 3)); // 8
+                        `
+                    }
+                ]
+            },
+            {
+                tipo: 'lista',
+                titulo: 'Ventajas de JavaScript',
+                contenido: [
+                    {
+                        texto: `✅ Lenguaje versátil para frontend y backend`
+                    },
+                    {
+                        texto: `✅ Gran ecosistema de librerías y frameworks`
+                    },
+                    {
+                        texto: `✅ Permite crear experiencias web interactivas`
+                    },
+                    {
+                        texto: `✅ Fácil de aprender y ampliamente soportado`
+                    }
+                ]
+            }
+        ]
     },
     {
         nombre: 'GitHub',
@@ -601,6 +1095,71 @@ export const LENGUAJES_INFO = [
         categoria: 'despliegue',
         subcategoria: 'hosting de código',
         descripcion: 'Plataforma de alojamiento de código fuente y control de versiones basada en Git, que facilita la colaboración entre desarrolladores y la gestión de proyectos de software.',
+        apartados: [
+            {
+                tipo: 'parrafo',
+                titulo: '¿Qué es GitHub?',
+                contenido: [
+                    {
+                        texto: `GitHub es una plataforma de alojamiento de código fuente y control de versiones basada en Git. Facilita la colaboración entre desarrolladores, la gestión de proyectos de software y el seguimiento de cambios en el código.`
+                    },
+                    {
+                        texto: `🌐 Es ampliamente utilizado en la industria del software para proyectos de código abierto y privados.`
+                    }
+                ]
+            },
+            {
+                tipo: 'lista',
+                titulo: 'Características principales',
+                contenido: [
+                    {
+                        texto: `🔄 Control de versiones → seguimiento de cambios con Git.`
+                    },
+                    {
+                        texto: `🤝 Colaboración → pull requests, revisiones de código y gestión de issues.`
+                    },
+                    {
+                        texto: `📁 Repositorios → almacenamiento y organización del código fuente.`
+                    },
+                    {
+                        texto: `🛠 Integraciones → CI/CD, GitHub Actions, y más.`
+                    }
+                ]
+            },
+            {
+                tipo: 'codigo',
+                titulo: 'Ejemplo básico 📂',
+                contenido: [
+                    {
+                        texto: `
+    git clone https://github.com/usuario/proyecto.git
+    git checkout -b nueva-funcionalidad
+    git add .
+    git commit -m "Añadida nueva funcionalidad"
+    git push origin nueva-funcionalidad
+                        `
+                    }
+                ]
+            },
+            {
+                tipo: 'lista',
+                titulo: 'Ventajas de GitHub',
+                contenido: [
+                    {
+                        texto: `✅ Facilita la colaboración en proyectos de software`
+                    },
+                    {
+                        texto: `✅ Control de versiones eficiente con Git`
+                    },
+                    {
+                        texto: `✅ Amplias integraciones y herramientas para desarrolladores`
+                    },
+                    {
+                        texto: `✅ Ideal para proyectos de código abierto y privados`
+                    }
+                ]
+            }
+        ]
     }
 ];
 
