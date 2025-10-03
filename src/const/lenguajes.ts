@@ -321,7 +321,7 @@ export const LENGUAJES_INFO = [
         web: 'https://supabase.com',
         categoria: 'backend',
         subcategoria: 'base de datos',
-        precio: ``,
+        precio: `25€/mes`,
         descripcion: 'Plataforma de backend como servicio que proporciona una base de datos PostgreSQL, autenticación, almacenamiento y funciones en tiempo real, facilitando el desarrollo de aplicaciones web y móviles.',
         apartados: [
             {
@@ -405,6 +405,7 @@ export const LENGUAJES_INFO = [
         web: 'https://resend.com',
         categoria: 'backend',
         subcategoria: 'servicio de email',
+        precio: '20€/mes',
         descripcion: 'Servicio de envío de correos electrónicos diseñado para desarrolladores, que ofrece una API sencilla y escalable para gestionar campañas de email y notificaciones transaccionales.',
         apartados: [
             {
@@ -489,6 +490,7 @@ export const LENGUAJES_INFO = [
         id: 'vercel',
         web: 'https://vercel.com',
         categoria: 'despliegue',
+        precio: '20€/mes',
         descripcion: 'Plataforma de despliegue y alojamiento optimizada para aplicaciones frontend y sitios estáticos, que ofrece integración continua, escalabilidad automática y un rendimiento excepcional.',
         apartados: [
             {

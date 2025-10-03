@@ -5,14 +5,14 @@ import { LENGUAJES_POR_CATEGORIA } from "@const/lenguajes";
 {Object.entries(LENGUAJES_POR_CATEGORIA).map(([categoria, lenguajes]) => (
   <section>
     <h2 class="text-3xl text-rosa font-bold">{categoria.toUpperCase()}</h2>
-    <div class="flex flex-wrap gap-4 mt-4">
+    <div class="flex flex-wrap gap-4 mt-4 sm:place-content-start place-content-center">
        {lenguajes.map(({ nombre, id, subcategoria, descripcion, web, precio }) => (
       <div class="ml-4 my-1 p-3 w-64 h-w-64 bg-blanco rounded grid grid-rows-[auto_1fr_auto] gap-3">
         <div class="w-full grid grid-cols-[1fr_max-content] ">
             <div class="flex flex-col justify-start w-full">
               <span class="font-semibold text-magenta text-2xl">{nombre}</span>
               {subcategoria && <span class="text-base text-rosa first-letter:uppercase">{subcategoria}</span>}
-              {precio && <span class="text-sm text-azul"></span>}
+              {precio && <span class="text-sm text-azul">Desde {precio}</span>}
             </div>
             <div class="w-full h-full flex items-center justify-center">
               <img src={`/iconos/${id}.svg`} alt={`Logo de ${nombre}`} class="w-16 h-16 mx-auto"/>
