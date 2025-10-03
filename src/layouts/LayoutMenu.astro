@@ -3,6 +3,7 @@ import Background from "@components/Background.astro";
 import Footer from "@components/Footer.astro";
 import Menu from "@components/Menu.astro";
 import MenuMob from "@components/MenuMob.astro";
+import Analytics from '@vercel/analytics/astro'
 interface Props {
 	title: string;
 	
@@ -37,6 +38,7 @@ const { title } = Astro.props;
 		<meta name="twitter:image" content="/og_porfolio.png" />
 	</head>
 	<body class="bg-azul overflow-x-hidden">
+		<Analytics/>
         <div class="grid min-h-dvh grid-rows-[auto_1fr_auto]">
 			<div class="sm:block hidden">
 				<Menu />
