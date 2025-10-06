@@ -39,8 +39,11 @@ const proyectos = PROYECTOS.filter(proyecto =>
     <div class="w-max grid grid-cols-2 gap-4">
         <div class="relative">
         <h1 class="text-6xl font-bold text-magenta flex flex-row gap-x-2 items-end"><a href={lenguaje.web} target="_blank" class="hover:underline duration-300">{lenguaje.nombre} {lenguaje.siglas_significado && <span class="text-4xl text-rosa first-letter:uppercase">{lenguaje.siglas_significado}</span>}</a></h1>
-        <h2 class="text-2xl mt-2 font-semibold text-rosa first-letter:uppercase">{lenguaje.subcategoria}</h2>
+        <div class="flex flex-row gap-x-2 mt-2 items-end">
+            <h2 class="text-2xl mt-2 font-semibold text-rosa first-letter:uppercase">{lenguaje.subcategoria}</h2>
+            {lenguaje.precio && <span class="text-base text-blanco">Desde {lenguaje.precio}</span>}
         </div>
+    </div>
         <div>
             <img src={`/iconos/${lenguaje.id}.svg`} alt={`Logo de ${lenguaje.nombre}`} class="w-24 h-24"/>
         </div>

@@ -1,13 +1,4 @@
 ---
-
-// const url = new URL(Astro.request.url).origin;
-// console.log("Url Actual",url);
-
-// let mostrar = false;
-// if(url.includes("localhost") ){
-//     mostrar = true;
-//     console.log("Mostrando");
-// }
 let mostrar = import.meta.env.DEV; // true si estamos en localhost/dev
 ---
 {

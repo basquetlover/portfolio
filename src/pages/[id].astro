@@ -43,7 +43,7 @@ if (!proyecto) {
         <ul class="pl-2 custom-punto">
             {proyecto.funcionalidades.map((funcion) => (
                 <li>
-                <p class=" text-base text-blanco ">{funcion.texto}</p>
+                <p class=" text-lg text-blanco ">{funcion.texto}</p>
                 </li>
             ))}
         </ul>
@@ -90,7 +90,7 @@ if (!proyecto) {
   <ul class="flex flex-wrap gap-2">
   {proyecto.tecnologias.map((tech) => (
     <li class="w-20 h-24  flex flex-col items-center">
-            <img src={`/iconos/${tech.logo}.svg`} class="w-16 h-16" alt={`Logo de ${tech.nombre}`} />
+            <img src={`/iconos/${tech.logo}.svg`} class="w-14 h-14" alt={`Logo de ${tech.nombre}`} />
             <p class="text-center text-lg text-blanco font-medium">{tech.nombre}</p>
         </li>
   ))}
