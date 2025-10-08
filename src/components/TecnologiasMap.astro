@@ -6,8 +6,8 @@ import { LENGUAJES_POR_CATEGORIA } from "@const/lenguajes";
   <section>
     <h2 class="text-3xl text-rosa font-bold">{categoria.toUpperCase()}</h2>
     <div class="flex flex-wrap gap-4 mt-4 sm:place-content-start place-content-center">
-       {lenguajes.map(({ nombre, id, subcategoria, descripcion, web, precio }) => (
-      <div class="ml-4 my-1 p-3 w-64 h-w-64 bg-blanco rounded grid grid-rows-[auto_1fr_auto] gap-3">
+       {lenguajes.map(({ nombre, id, subcategoria, descripcion, web, precio, }, index) => (
+      <div class={`ml-4 my-1 p-3 w-64 h-w-64 animate-fade-in-up bg-blanco rounded grid grid-rows-[auto_1fr_auto] gap-3 [animate-delay:${index * 100}ms]`}>
         <div class="w-full grid grid-cols-[1fr_max-content] ">
             <div class="flex flex-col justify-start w-full">
               <span class="font-semibold text-magenta text-2xl">{nombre}</span>
