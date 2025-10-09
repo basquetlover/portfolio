@@ -11,7 +11,7 @@ import {PROYECTOS} from "@const/proyectos"
                 <div class="p-2">
                     <div class="w-full grid grid-cols-[1fr_auto] gap-x-2">
                          <h4 class="text-xl w-max text-magenta font-medium">{nombre}</h4>
-                         <h5 class={`text-sm flex flex-row items-center font-medium gap-x-1 w-full ${estado === "En Producción" ? 'text-green-600':''}`}><span class={`w-[6px] h-[6px] inline-block rounded-full ${estado === "En Producción" ? 'bg-green-600':''}`}>&nbsp;</span>{estado}</h5>
+                         <h5 class={`text-sm flex flex-row items-center font-medium gap-x-1 w-full ${estado === "En Producción" ? 'text-green-600':''} ${estado === "En Desarrollo" ? 'text-orange-600':''}`}><span class={`w-[6px] h-[6px] inline-block rounded-full ${estado === "En Desarrollo" ? 'bg-orange-600':''}`}>&nbsp;</span>{estado}</h5>
                     </div>
                    <div class="flex flex-row gap-x-2 my-1">
                     {tipo_web && tipo_web.length > 0 && (
@@ -23,7 +23,9 @@ import {PROYECTOS} from "@const/proyectos"
                     <p>{descripcion}</p>
 
                     <div class="flex flex-row gap-x-2 mt-3">
-                        <a href={web} target="_blank" class="flex flex-row items-center place-content-center gap-x-1 px-3 py-2 rounded-lg bg-azul text-blanco w-max">
+                        {
+                            web ? (<>
+                            <a href={web} target="_blank" class="flex flex-row items-center place-content-center gap-x-1 px-3 py-2 rounded-lg bg-azul text-blanco w-max">
                             <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 -960 960 960" class="w-6 h-6 fill-blanco" >
                                 <path d="M480-80q-82 0-155-31.5t-127.5-86Q143-252 111.5-325T80-480q0-83 31.5-155.5t86-127Q252-817 325-848.5T480-880q83 0 155.5 31.5t127 86q54.5 54.5 86 127T880-480q0 82-31.5 155t-86 127.5q-54.5 54.5-127 86T480-80Zm0-82q26-36 45-75t31-83H404q12 44 31 83t45 75Zm-104-16q-18-33-31.5-68.5T322-320H204q29 50 72.5 87t99.5 55Zm208 0q56-18 99.5-55t72.5-87H638q-9 38-22.5 73.5T584-178ZM170-400h136q-3-20-4.5-39.5T300-480q0-21 1.5-40.5T306-560H170q-5 20-7.5 39.5T160-480q0 21 2.5 40.5T170-400Zm216 0h188q3-20 4.5-39.5T580-480q0-21-1.5-40.5T574-560H386q-3 20-4.5 39.5T380-480q0 21 1.5 40.5T386-400Zm268 0h136q5-20 7.5-39.5T800-480q0-21-2.5-40.5T790-560H654q3 20 4.5 39.5T660-480q0 21-1.5 40.5T654-400Zm-16-240h118q-29-50-72.5-87T584-782q18 33 31.5 68.5T638-640Zm-234 0h152q-12-44-31-83t-45-75q-26 36-45 75t-31 83Zm-200 0h118q9-38 22.5-73.5T376-782q-56 18-99.5 55T204-640Z"/>
                             </svg>
@@ -35,6 +37,16 @@ import {PROYECTOS} from "@const/proyectos"
                             </svg>
                             Más informacion
                         </a>
+                            </>) : (<>
+                                <a  class="flex flex-row items-center place-content-center gap-x-1 px-3 py-2 rounded-lg bg-rosa text-azul w-max">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="w-6 h-6 fill-azul">
+                                <path d="M440-280h80v-240h-80v240Zm40-320q17 0 28.5-11.5T520-640q0-17-11.5-28.5T480-680q-17 0-28.5 11.5T440-640q0 17 11.5 28.5T480-600Zm0 520q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/>
+                            </svg>
+                            Próximamente
+                        </a>
+                                </>)
+                        }
+                        
                         {
                             github !== '' ? (<>
                             <a href={github} target="_blank" class="flex flex-row items-center place-content-center gap-x-1 px-2 py-2 rounded-lg bg-black">
