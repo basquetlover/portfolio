@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./developer-logo.png" alt="Logo del desarrollador" width="120" />
+</p>
+
 # 🧑‍💻 Mi Portfolio
 
 ¡Bienvenido/a a mi portfolio!  
