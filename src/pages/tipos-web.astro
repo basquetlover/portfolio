@@ -1,12 +1,51 @@
 ---
 import EnMantenimiento from "@components/EnMantenimiento.astro";
 import LayoutMenu from "@layouts/LayoutMenu.astro";
+import { TIPOS_WEB} from "@const/tipos-web"
 ---
 
 <LayoutMenu title="Tipos de Web - Pere Alemany | Full-Stack Developer">
-  <EnMantenimiento>
-    
+
+    <section class="max-w-5xl mx-auto h-auto p-2">
+      <h1 class="text-4xl text-magenta font-bold my-8">Tipos de Web</h1>
+      <p class="text-lg text-blanco mb-4">En el mundo digital, no todas las páginas web son iguales. Dependiendo del propósito de tu proyecto, tus objetivos y tu público, deberás elegir un tipo de web u otro. Hoy te contamos los principales tipos de sitios web y qué los hace únicos, con ejemplos y consejos prácticos.</p>
+
+      {
+        TIPOS_WEB.map(({ nombre, apartados}) => (
+          <article class="max-w-5xl mx-auto">
+            <h2 class="text-3xl text-rosa font-semibold my-6">{nombre}</h2>
+            <div class="flex flex-col gap-y-4">
+              {
+                apartados.map(({  contenido, tipo}) => (
+                  <div>
+                     {
+                    tipo === "parrafo" ? (<>
+                    {contenido.map(({texto}) => (
+                        <p class="text-lg mb-5 text-blanco">{texto}</p>
+                    ))}
+                    </>):(<></>)
+                  }
+                  </div>
+                     
+                ))
+              }
+            </div>
+          </article>
+        ))
+      }
+      <div class="max-w-2xl mx-auto text-base text-blanco flex flex-col gap-y-4 my-8 border-l-2 border-rosa p-2 rounded-sm">
+          <p>
+            Cada tipo de web tiene un propósito distinto y requiere un enfoque diferente en diseño, estructura y funcionalidades.
+          </p>
+          <p>
+            En mi portfolio, no solo desarrollo cada tipo de web de forma profesional, sino que también puedo combinarlos para crear proyectos más completos, dinámicos y adaptados a tus necesidades.
+          </p>
+          <p>
+            Si tienes un proyecto en mente, puedo ayudarte a definir qué tipos de web son los más adecuados y cómo integrarlos para conseguir el mejor resultado.
+        </p>
+      </div>
+    </section>
     
 
-  </EnMantenimiento>
+
 </LayoutMenu>
