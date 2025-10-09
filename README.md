@@ -1,4 +1,4 @@
-![Logo del desarrollador](./developer-logo.png)
+
 
 # 🧑‍💻 Mi Portfolio
 
