@@ -1,6 +1,4 @@
-<p align="center">
-  <img src="https://perealemany-dev.vercel.app/developer-logo.png" alt="Logo del desarrollador" width="120" />
-</p>
+
 
 # 🧑‍💻 Mi Portfolio
 
