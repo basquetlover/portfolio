@@ -1,52 +1,53 @@
-# Astro Starter Kit: Basics
+# 🧑‍💻 Mi Portfolio
 
-```sh
-npm create astro@latest -- --template basics
-```
+¡Bienvenido/a a mi portfolio!  
+Aquí encontrarás una recopilación de mis proyectos, habilidades y experiencias desarrollando aplicaciones web modernas, con un enfoque en diseño limpio, rendimiento y usabilidad.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+---
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 🚀 Tecnologías principales
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+- **Frontend:** HTML5, CSS3, JavaScript, TypeScript, React, Astro, Tailwind CSS  
+- **Backend:** Node.js, Supabase, APIs REST  
+- **Herramientas:** Git, Vercel, VS Code  
 
-## 🚀 Project Structure
+---
 
-Inside of your Astro project, you'll see the following folders and files:
+## 💼 Proyectos destacados
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
+### 🏐 IES Calvià Voley Tournament
+Web oficial del torneo de voleibol del IES Calvià, desarrollada con **Astro + Tailwind CSS**.  
+Incluye inscripción de equipos, panel de control, estadísticas en tiempo real y sincronización con Supabase.  
+🔗 [Visitar proyecto](https://voley.iescalvia.com)
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+### 🧠 Otros proyectos
+- **Acta Digital en Tiempo Real:** Sistema React para registrar puntuaciones y estadísticas de voleibol con sincronización local y en la nube.  
+- **Panel de Administración:** Interfaz segura para gestionar equipos, jugadores y partidos del torneo.  
+- **Analizador de Datos (Python):** Proyecto de análisis estadístico con datos de competiciones.
 
-## 🧞 Commands
+---
 
-All commands are run from the root of the project, from a terminal:
+## 🧰 Qué me gusta construir
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+- Interfaces limpias y funcionales  
+- Aplicaciones conectadas en tiempo real  
+- Herramientas que faciliten la organización de eventos o competiciones  
 
-## 👀 Want to learn more?
+---
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## 📫 Contacto
+
+- ✉️ Email: [alemanytomaspere@gmail.com](mailto:valemannytomaspere@gmail.com)  
+- 🌐 Portfolio: [perealemany-dev.vercel.app](https://perealemany-dev.vercel.app)  
+- 💼 GitHub: [Pere Alemany](https://github.com/basquetlover)
+
+---
+
+## 💬 Sobre mí
+
+Soy un desarrollador con pasión por el deporte, la tecnología y la creación de experiencias digitales dinámicas.  
+Busco seguir aprendiendo y aportando soluciones que unan la organización y la innovación en proyectos reales.
+
+---
+
+⭐️ *Gracias por visitar mi portfolio. ¡Explora mis proyectos y no dudes en contactar conmigo!*
