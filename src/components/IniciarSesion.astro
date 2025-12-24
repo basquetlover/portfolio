@@ -1,0 +1,56 @@
+---
+import { verificarSesion } from "src/utils/usuario";
+
+let usuario = await verificarSesion(Astro.request);
+
+---
+{
+    usuario ? (
+        <a href="/panel"   class="px-4 py-2 bg-magenta text-blanco font-semibold rounded-md hover:bg-rosa hover:text-azul duration-300">Ir al Panel</a>
+    ) : (
+        <p id="btn_IniciarSesion" class="px-4 py-2 bg-magenta cursor-pointer active:scale-95 text-blanco font-semibold rounded-md hover:bg-rosa hover:text-azul duration-300">Iniciar Sesión</p>
+
+        <div id="modal_IniciarSesion" class="hidden w-full h-full z-50 bg-azul bg-opacity-80  top-0 left-0">
+            <form method="POST" action="/api/sesion/iniciar" class="w-full h-full flex justify-center items-center  duration-300">
+                    <div class="bg-blanco rounded-md p-6 w-96 flex flex-col gap-y-4 shadow-lg shadow-black/30">
+                        <div class="flex justify-between items-center">
+                            <h2 class="text-2xl font-semibold text-azuloscuro">Iniciar Sesión</h2>
+                            <span id="cerrarModal_IniciarSesion" class="cursor-pointer w-8 h-8 flex justify-center items-center rounded-full hover:bg-magenta hover:text-blanco duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                                    <path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 11-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clip-rule="evenodd" />
+                                </svg>
+                            </span>
+                        </div>
+                        <input type="email" name="email" placeholder="Correo Electrónico" class="w-full px-4 py-2 border border-gris rounded-md focus:outline-none focus:ring-2 focus:ring-magenta"/>
+                        <input type="password" name="password" placeholder="Contraseña" class="w-full px-4 py-2 border border-gris rounded-md focus:outline-none focus:ring-2 focus:ring-magenta"/>
+                        <button type="submit" class="w-full px-4 py-2 bg-magenta text-blanco font-semibold rounded-md hover:bg-rosa hover:text-azul duration-300">Iniciar Sesión</button>
+                    </div>
+            </form>
+        </div>
+    )
+}
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const btnIniciarSesion = document.getElementById('btn_IniciarSesion')!;
+        const modalIniciarSesion = document.getElementById('modal_IniciarSesion')!;
+        const cerrarModalIniciarSesion = document.getElementById('cerrarModal_IniciarSesion')!;
+
+        btnIniciarSesion.addEventListener('click', () => {
+            modalIniciarSesion.classList.add("fixed");
+            modalIniciarSesion.classList.remove("hidden");
+        });
+
+        cerrarModalIniciarSesion.addEventListener('click', () => {
+            modalIniciarSesion.classList.remove("fixed");
+            modalIniciarSesion.classList.add("hidden");
+        });
+
+        modalIniciarSesion.addEventListener('click', (event) => {
+            if (event.target === modalIniciarSesion) {
+                modalIniciarSesion.classList.remove("fixed");
+                modalIniciarSesion.classList.add("hidden");
+            }
+        });
+    });
+</script>

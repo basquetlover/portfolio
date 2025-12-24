@@ -1,5 +1,6 @@
 ---
 import {PROYECTOS} from "@const/proyectos"
+import IniciarSesion from "./IniciarSesion.astro"
 ---
 <header class="w-[98%] bg-azuloscuro border-b border-magenta grid grid-cols-[max-content_1fr_max-content] place-items-center mx-auto  gap-4 p-2">
    
@@ -32,7 +33,7 @@ import {PROYECTOS} from "@const/proyectos"
                 <ul class="flex flex-col gap-y-2">
                      {PROYECTOS.map(({ nombre, id, descripcion, web }) => (
                         <li class="bg-blanco text-azul rounded-md p-2 w-48 opacity-0 group-hover:opacity-100 duration-300 z-10 hover:bg-magenta hover:text-blanco">
-                            <a href={`/${id}`} class="w-full h-full block">{nombre}</a>
+                            <a href={`/proyecto/${id}`} class="w-full h-full block">{nombre}</a>
                         </li>
                     ))}
                 </ul>
@@ -47,7 +48,11 @@ import {PROYECTOS} from "@const/proyectos"
             <!-- <span class="absolute top-7 text-magenta font-light text-xs">Próximamente</span> -->
         </a>
     </nav>
-    <!-- <p class="flex gap-x-2 px-3 py-2 rounded-full border-[1px] text-blanco border-magenta w-max text-lg items-center place-content-center"><span class="w-4 h-4 bg-green-600 rounded-full"></span>Disponible</p> -->
-    <p class="flex gap-x-2 px-3 py-2 rounded-full border-[1px] border-magenta w-max text-blanco text-xl items-center place-content-center mx-auto"><span class="w-4 h-4 bg-red-600 rounded-full"></span>No Disponible</p>
+    <div class="flex flex-row w-max gap-x-5 items-center justify-end">
+        <!-- <p class="flex gap-x-2 px-3 py-2 rounded-full border-[1px] text-blanco border-magenta w-max text-lg items-center place-content-center"><span class="w-4 h-4 bg-green-600 rounded-full"></span>Disponible</p> -->
+        <p class="flex gap-x-2 px-3 py-2 rounded-full border-[1px] border-magenta w-max text-blanco text-xl items-center place-content-center mx-auto"><span class="w-4 h-4 bg-red-600 rounded-full"></span>No Disponible</p>
+        <IniciarSesion />
+    </div>
+
     
 </header>
