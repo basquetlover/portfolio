@@ -1,5 +1,5 @@
 ---
-import { verificarSesion } from "src/utils/usuario";
+import { verificarSesion } from "@utils/usuario";
 
 let usuario = await verificarSesion(Astro.request);
 
@@ -11,7 +11,7 @@ let usuario = await verificarSesion(Astro.request);
         <p id="btn_IniciarSesion" class="px-4 py-2 bg-magenta cursor-pointer active:scale-95 text-blanco font-semibold rounded-md hover:bg-rosa hover:text-azul duration-300">Iniciar Sesión</p>
 
         <div id="modal_IniciarSesion" class="hidden w-full h-full z-50 bg-azul bg-opacity-80  top-0 left-0">
-            <form method="POST" action="/api/sesion/iniciar" class="w-full h-full flex justify-center items-center  duration-300">
+            <form method="POST" action="/api/sesion/iniciar" id="iniciar-form" class="w-full h-full flex justify-center items-center  duration-300">
                     <div class="bg-blanco rounded-md p-6 w-96 flex flex-col gap-y-4 shadow-lg shadow-black/30">
                         <div class="flex justify-between items-center">
                             <h2 class="text-2xl font-semibold text-azuloscuro">Iniciar Sesión</h2>
@@ -21,6 +21,7 @@ let usuario = await verificarSesion(Astro.request);
                                 </svg>
                             </span>
                         </div>
+                        <div id="errorbox"></div>
                         <input type="email" name="email" placeholder="Correo Electrónico" class="w-full px-4 py-2 border border-gris rounded-md focus:outline-none focus:ring-2 focus:ring-magenta"/>
                         <input type="password" name="password" placeholder="Contraseña" class="w-full px-4 py-2 border border-gris rounded-md focus:outline-none focus:ring-2 focus:ring-magenta"/>
                         <button type="submit" class="w-full px-4 py-2 bg-magenta text-blanco font-semibold rounded-md hover:bg-rosa hover:text-azul duration-300">Iniciar Sesión</button>
@@ -53,4 +54,39 @@ let usuario = await verificarSesion(Astro.request);
             }
         });
     });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log('Script cargado');
+
+    document.getElementById('iniciar-form')?.addEventListener('submit', async (event) => {
+        event.preventDefault(); // Evita el envío del formulario por defecto
+
+        const form = event.target as HTMLFormElement; // Asegúrate de que sea un HTMLFormElement
+        const formData = new FormData(form); // Ahora TypeScript sabe que 'form' es un HTMLFormElement
+        document.getElementById('errorbox')!.innerHTML = ''; // Limpia mensajes de error previos
+        const response = await fetch(form.action, {
+            method: 'POST',
+            body: formData,
+        });
+
+        const contentType = response.headers.get("Content-Type");
+        if (contentType && contentType.includes("text/html")) {
+            const html = await response.text();
+            document.getElementById('errorbox')!.innerHTML = html; // Usa el operador de aserción no nula
+        } else if (contentType && contentType.includes("application/json")) {
+            const jsonResponse = await response.json();
+            if (jsonResponse.success) {
+                // Redirigir a la página principal
+                
+                    window.location.reload(); // Redirige al usuario
+                
+            } else {
+                // Manejo de errores si es necesario
+                document.getElementById('errorbox')!.innerHTML = `<div class="bg-red-600 bg-opacity-30 border-3 border-red-700 text-white rounded-lg p-2 my-2 flex items-center">Error al iniciar sesión</div>`;
+            }
+        }
+    });
+});
 </script>

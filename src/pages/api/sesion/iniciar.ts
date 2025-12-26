@@ -25,7 +25,7 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
     // Validar que se proporcionen email y contraseña
     if (!email || !password) {
         return new Response(
-            `<div class="bg-red-600 bg-opacity-30 border-3 border-red-700 text-white rounded-lg p-2 my-2 flex items-center text-center">Usuario y contraseña obligatorios</div>`, 
+            `<div class="bg-red-500  border-3 border-red-900 text-red-900 rounded-lg p-2 my-2 flex items-center text-center">Usuario y contraseña obligatorios</div>`, 
             { status: 400, headers: { "Content-Type": "text/html" } }
         );
     }
@@ -38,12 +38,18 @@ export const POST: APIRoute = async ({ request, cookies, redirect }) => {
         .single();
 
     
-
+if (error || !Usuarios) {
+    console.log(error)
+        return new Response(
+            `<div class="bg-red-500  border-3 border-red-900 text-red-900 rounded-lg p-2 my-2 flex items-center text-center">Usuario o contraseña inválido</div>`, 
+            { status: 400, headers: { "Content-Type": "text/html" } }
+        );
+    }
     // Validar la contraseña
     const isPasswordValid = await bcrypt.compare(password, Usuarios.contrasena);
     if (!isPasswordValid) {
         return new Response(
-            `<div class="bg-red-600 bg-opacity-30 border-3 border-red-700 text-white rounded-lg p-2 my-2 flex items-center text-center">Usuario o contraseña inválido</div>`, 
+            `<div class="bg-red-500  border-3 border-red-900 text-red-900 rounded-lg p-2 my-2 flex items-center text-center">Usuario o contraseña inválido</div>`, 
             { status: 400, headers: { "Content-Type": "text/html" } }
         );
     }
@@ -76,7 +82,7 @@ function encryptAlfaNum(text: string) {
 
 // Ejemplo de uso
 
-    if(!Usuarios.session_id){
+    if(!Usuarios.token){
         const session_id = encryptAlfaNum(email);
         const { data, error } = await supabase
         .from('usuarios')
@@ -88,8 +94,8 @@ function encryptAlfaNum(text: string) {
         id_session = session_id;
     }
 
-    if(Usuarios.session_id){
-        id_session = Usuarios.session_id
+    if(Usuarios.token){
+        id_session = Usuarios.token
     }
     // Si la contraseña es válida, establecer la cookie de sesión
 
@@ -102,9 +108,9 @@ function encryptAlfaNum(text: string) {
     
 
 
-    return new Response(
-        `<div class="bg-red-600 bg-opacity-30 border-3 border-red-700 text-white rounded-lg p-2 my-2 flex items-center text-center">No s'han acceptat les cookies necessàries.</div>`, 
-        { status: 400, headers: { "Content-Type": "text/html" } }
-    );
+     return new Response(
+      JSON.stringify({ success: true }), 
+      { status: 200, headers: { "Content-Type": "application/json" } }
+  );
     
 };

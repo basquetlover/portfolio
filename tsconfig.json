@@ -23,6 +23,9 @@
       ],
       "@formas/*": [
         "src/formas/*"
+      ],
+      "@utils/*": [
+        "src/utils/*"
       ]
     },
     "jsx": "react-jsx",

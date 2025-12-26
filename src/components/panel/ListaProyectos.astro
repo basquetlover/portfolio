@@ -1,0 +1,72 @@
+---
+import { proyectosUsuario } from "@utils/proyectoSeleccionado";
+
+const proyectos = await proyectosUsuario(Astro.request);
+const url = new URL(Astro.request.url);
+const proyectoSeleccionadoID = url.searchParams.get("proyectoID");
+// Separar seleccionado y resto
+
+const proyectoSeleccionado = proyectos.find(p => p.id === proyectoSeleccionadoID) ?? null;
+const otrosProyectos = proyectos.filter(p => p.id !== proyectoSeleccionadoID);
+
+---
+
+<div class="w-max relative inline-block " id="proyectosDropdown">
+<div
+    class="bg-azul border-[1px] border-magenta text-blanco p-2 rounded-md cursor-pointer flex items-center justify-between w-72 hover:bg-rosa hover:bg-opacity-30 duration-300"
+>
+    {proyectoSeleccionado ? (<>
+            <img src={proyectoSeleccionado.favicon} alt={`${proyectoSeleccionado.nombre} favicon`} class="inline-block w-4 h-4 mr-2 align-middle"/>
+            <p class="w-40 salto-de-linea">{proyectoSeleccionado.nombre} </p>
+            <p class={`text-xs w-20 py-[2px] flex items-center place-content-center capitalize px-2 border-[1px] rounded-full ${proyectoSeleccionado.rolUsuario === 'propietario' ? 'bg-rol-propietario/30 border-rol-propietario text-rol-propietario' : proyectoSeleccionado.rolUsuario === 'admin' ? 'bg-rol-administracion/30 border-rol-administracion text-rol-administracion' : proyectoSeleccionado.rolUsuario === 'visitante' ? 'bg-rol-visitante/30 border-rol-visitante text-rol-visitante' : 'bg-rol-colaborador/30 text-rol-colaborador border-rol-colaborador'}`}>{proyectoSeleccionado.rolUsuario?.trim()}</p>
+    </>):(<>
+        <p>Selecciona un proyecto</p>
+    </>)}
+    
+    
+    <svg xmlns="http://www.w3.org/2000/svg"class="w-5 h-5 fill-blanco" viewBox="0 -960 960 960">
+        <path d="M480-120 300-300l58-58 122 122 122-122 58 58-180 180ZM358-598l-58-58 180-180 180 180-58 58-122-122-122 122Z"/>
+    </svg>
+</div>
+<div
+    class="absolute left-0 mt-1 w-72 bg-azul border border-magenta rounded-md shadow-lg max-h-60 overflow-y-auto hidden"
+>
+    {otrosProyectos.length > 0
+    ? otrosProyectos.map(p => (
+        <a
+            href={`?proyectoID=${p.id}`}
+            class="flex flex-row items-center w-full h-auto p-2 text-blanco hover:bg-rosa/40 hover:text-blanco duration-200"
+        >
+            <img src={p.favicon} alt={`${p.nombre} favicon`} class="inline-block w-4 h-4 mr-2 align-middle"/>
+            <p class="w-40 salto-de-linea">{p.nombre} </p>
+            <p class={`text-xs w-20 py-[2px] flex items-center place-content-center capitalize px-2 border-[1px] rounded-full ${p.rolUsuario === 'propietario' ? 'bg-rol-propietario/30 border-rol-propietario text-rol-propietario' : p.rolUsuario === 'admin' ? 'bg-rol-administracion/30 border-rol-administracion text-rol-administracion' : p.rolUsuario === 'visitante' ? 'bg-rol-visitante/30 border-rol-visitante text-rol-visitante' : 'bg-rol-colaborador/30 text-rol-colaborador border-rol-colaborador'}`}>{p.rolUsuario?.trim()}</p>
+        </a>
+        ))
+    : <div class="px-4 py-2 text-gray-500">No hay otros proyectos</div>}
+</div>
+</div>
+
+<script type="module">
+const dropdown = document.getElementById("proyectosDropdown");
+const contenido = dropdown.querySelector(".absolute");
+
+dropdown.addEventListener("click", () => {
+    contenido.classList.toggle("hidden");
+});
+
+// Cerrar al hacer clic fuera
+document.addEventListener("click", (e) => {
+    if (!dropdown.contains(e.target)) {
+    contenido.classList.add("hidden");
+    }
+});
+</script>
+
+<style>
+    .salto-de-linea {
+        white-space: nowrap;       /* No permite saltos de línea */
+        overflow: hidden;          /* Oculta el texto que se desborda */
+        text-overflow: ellipsis;   /* Muestra los puntos suspensivos */
+    }
+    
+</style>
