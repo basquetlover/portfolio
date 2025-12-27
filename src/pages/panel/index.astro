@@ -20,7 +20,7 @@ let urlPrincipal =
     )?.url ?? null;
 
 urlPrincipal = `https://${urlPrincipal}`;
-console.log("urlPrincipal:", urlPrincipal);
+//console.log("urlPrincipal:", urlPrincipal);
 const totalUrls = proyectoSeleccionado?.urls?.length ?? 0;
 const extraUrls = totalUrls > 1 ? totalUrls - 1 : 0;
 
@@ -63,23 +63,26 @@ function formatearFechaES(
                         )}
                     </div>
 
-                    <div class="flex flex-col">
+                    <div class="flex flex-col place-content-between">
                         <h1 class="text-4xl font-bold text-magenta">{proyectoSeleccionado?.nombre}</h1>
-                        <p class="mt-2 text-rosa">Dominios</p>
-                        <div class="flex flex-row items-center gap-x-4">
-                            <a href={urlPrincipal} target="_blank" class="text-blanco flex flex-row items-center gap-x-1  hover:text-rosa hover:fill-rosa duration-300">{urlPrincipal}
-                                <span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 -960 960 960">
-                                        <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z"/>
-                                    </svg>
-                                </span>
-                            </a>
-                            {
-                                extraUrls > 0 ? (
-                                    <span class="text-sm bg-blue-600/60 rounded-full text-blanco flex flex-row items-center place-content-center w-6 h-6"> +{extraUrls} </span>
-                                ) : null
-                            }
+                        <div>
+                            <p class="mt-2 text-rosa">Dominios</p>
+                            <div class="flex flex-row items-center gap-x-4">
+                                <a href={urlPrincipal} target="_blank" class="text-blanco flex flex-row items-center gap-x-1  hover:text-rosa hover:fill-rosa duration-300">{urlPrincipal}
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 -960 960 960">
+                                            <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z"/>
+                                        </svg>
+                                    </span>
+                                </a>
+                                {
+                                    extraUrls > 0 ? (
+                                        <span class="text-sm bg-blue-600/60 rounded-full text-blanco flex flex-row items-center place-content-center w-6 h-6"> +{extraUrls} </span>
+                                    ) : null
+                                }
+                            </div>
                         </div>
+                        
                         
                         <div class="flex flex-row mt-3 gap-x-3">
                             <div>
