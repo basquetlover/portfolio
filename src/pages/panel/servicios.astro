@@ -8,7 +8,7 @@ const proyectos = await proyectosUsuario(Astro.request);
 
 const url = new URL(Astro.request.url);
 const proyectoSeleccionadoID = url.searchParams.get("proyectoID");
-console.log("proyectoSeleccionadoID:", proyectoSeleccionadoID);
+//console.log("proyectoSeleccionadoID:", proyectoSeleccionadoID);
 if(!proyectoSeleccionadoID ) {
   // Redirigir al primer proyecto si no hay ninguno seleccionado
     return Astro.redirect("/panel");
@@ -19,7 +19,7 @@ const proyectoSeleccionado =
 const plan = proyectoSeleccionado?.plan ?? [];
 
 const serviciosPlanSet = new Set(plan.map((p: any) => p.servicio));
-console.log(plan);
+//console.log(plan);
 let serviciosConSeleccion;
 if(plan.length > 0) {
   // Redirigir al panel si no hay servicios contratados

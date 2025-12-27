@@ -11,14 +11,54 @@ const proyectos = await proyectosUsuario(Astro.request);
 
 const url = new URL(Astro.request.url);
 const proyectoSeleccionadoID = url.searchParams.get("proyectoID");
+const proyectoSeleccionado =
+    proyectos.find(p => p.id === proyectoSeleccionadoID) ?? null;
 
+let urlPrincipal =
+    proyectoSeleccionado?.urls?.find(
+        (u: { principal: boolean }) => u.principal
+    )?.url ?? null;
 
+urlPrincipal = `https://${urlPrincipal}`;
+console.log("urlPrincipal:", urlPrincipal);
+const totalUrls = proyectoSeleccionado?.urls?.length ?? 0;
+const extraUrls = totalUrls > 1 ? totalUrls - 1 : 0;
 ---
 
 <LayoutPanel title="Panel de Administración - Pere Alemany | Full-Stack Developer">
     {
         proyectoSeleccionadoID ? (<>
-        
+            <section class="max-w-4xl mx-auto w-auto h-auto p-2">
+                <div>
+                       {urlPrincipal?.startsWith("https://") && (
+                            <img
+                                src={`/api/screenshot.png?url=${encodeURIComponent(urlPrincipal)}`}
+                                alt="Preview web"
+                                loading="lazy"
+                                class="w-10 h-10"
+                            />
+                        )}
+                    <div class="flex flex-col gap-y-2">
+                        <h1 class="text-4xl font-bold text-magenta">{proyectoSeleccionado?.nombre}</h1>
+                        <div class="flex flex-row items-center gap-x-4">
+                            <a href={urlPrincipal} target="_blank" class="text-blanco flex flex-row items-center gap-x-1  hover:text-rosa hover:fill-rosa duration-300">{urlPrincipal}
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 -960 960 960">
+                                        <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z"/>
+                                    </svg>
+                                </span>
+                            </a>
+                            {
+                                extraUrls > 0 ? (
+                                    <span class="text-sm bg-blue-600/60 rounded-full text-blanco flex flex-row items-center place-content-center w-6 h-6"> +{extraUrls} </span>
+                                ) : null
+                            }
+                        </div>
+                        
+                    </div>
+                </div>
+                
+            </section>
         </>):(
             <IndexGeneral />
         )
