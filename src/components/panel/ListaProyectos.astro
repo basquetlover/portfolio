@@ -29,7 +29,7 @@ const otrosProyectos = proyectos.filter(p => p.id !== proyectoSeleccionadoID);
     </svg>
 </div>
 <div
-    class="absolute left-0 mt-1 w-72 bg-azul border border-magenta rounded-md shadow-lg max-h-60 overflow-y-auto hidden"
+    class="absolute left-0 mt-1 w-72 bg-azul border border-magenta rounded-md shadow-lg max-h-60 z-50 overflow-y-auto hidden"
 >
     {otrosProyectos.length > 0
     ? otrosProyectos.map(p => (
