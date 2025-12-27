@@ -1,7 +1,26 @@
 ---
 import LayoutPanel from "@layouts/LayoutPanel.astro";
+import { verificarSesion } from "@utils/usuario";
+
+const usuario = await verificarSesion(Astro.request);
+
+import { proyectosUsuario } from "@utils/proyectoSeleccionado";
+import IndexGeneral from "@components/panel/IndexGeneral.astro";
+
+const proyectos = await proyectosUsuario(Astro.request);
+
+const url = new URL(Astro.request.url);
+const proyectoSeleccionadoID = url.searchParams.get("proyectoID");
+
+
 ---
 
 <LayoutPanel title="Panel de Administración - Pere Alemany | Full-Stack Developer">
-
+    {
+        proyectoSeleccionadoID ? (<>
+        
+        </>):(
+            <IndexGeneral />
+        )
+    }
 </LayoutPanel>

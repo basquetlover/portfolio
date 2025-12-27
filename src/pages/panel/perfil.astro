@@ -1,0 +1,12 @@
+---
+import LayoutPanel from "@layouts/LayoutPanel.astro";
+import { verificarSesion } from "@utils/usuario";
+
+const usuario = await verificarSesion(Astro.request);
+
+// console.log("Usuario en perfil:", usuario);
+---
+
+<LayoutPanel title="Mi Perfil - Panel de Administración - Pere Alemany | Full-Stack Developer">
+
+</LayoutPanel>

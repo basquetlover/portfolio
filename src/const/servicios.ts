@@ -98,7 +98,7 @@ export const SERVICIOS = [
         precioMensual: 20,
         precioAnual: 240,
         incluye: [
-          { text: "Hasta 10.000 emails/mes" }
+          { text: "Hasta 3.000 emails/mes" }
         ]
       },
       {
@@ -108,7 +108,8 @@ export const SERVICIOS = [
         precioAnual: 300,
         incluye: [
           { text: "Mayor volumen" },
-          { text: "Logs" }
+          { text: "Logs" },
+          { text: "Hasta 10.000 emails/mes" }
         ]
       },
       {

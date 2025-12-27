@@ -8,7 +8,11 @@ const proyectos = await proyectosUsuario(Astro.request);
 
 const url = new URL(Astro.request.url);
 const proyectoSeleccionadoID = url.searchParams.get("proyectoID");
-
+console.log("proyectoSeleccionadoID:", proyectoSeleccionadoID);
+if(!proyectoSeleccionadoID ) {
+  // Redirigir al primer proyecto si no hay ninguno seleccionado
+    return Astro.redirect("/panel");
+}
 const proyectoSeleccionado =
     proyectos.find(p => p.id === proyectoSeleccionadoID) ?? null;
 
@@ -16,15 +20,28 @@ const plan = proyectoSeleccionado?.plan ?? [];
 
 const serviciosPlanSet = new Set(plan.map((p: any) => p.servicio));
 console.log(plan);
-
-const serviciosConSeleccion = SERVICIOS.map(servicio => ({
+let serviciosConSeleccion;
+if(plan.length > 0) {
+  // Redirigir al panel si no hay servicios contratados
+     serviciosConSeleccion = SERVICIOS.map(servicio => ({
     ...servicio,
     seleccionado: serviciosPlanSet.has(servicio.id),
     planes: servicio.planes?.map(plan => ({
         ...plan,
         seleccionado: plan.id === proyectoSeleccionado?.plan.find((p: any) => p.servicio === servicio.id)?.plan
     }))
-}));
+    }));
+} else {
+     serviciosConSeleccion = SERVICIOS.map(servicio => ({
+    ...servicio,
+    seleccionado: false,
+    planes: servicio.planes?.map(plan => ({
+        ...plan,
+        seleccionado: false
+    }))
+    }));
+}
+
 
 const serviciosIncluidos = serviciosConSeleccion.filter(s => s.seleccionado);
 
@@ -37,16 +54,16 @@ const serviciosNoIncluidos = SERVICIOS.filter(s =>
 // };
 
 // const planContratado = getPlanSeleccionado(servicio.id);
-console.log(serviciosIncluidos);
+//console.log(serviciosIncluidos);
 ---
 
 <LayoutPanel title="Servicios - Panel de Administración - Pere Alemany | Full-Stack Developer">
-    <h3 class="text-3xl mt-10 ml-5 text-rosa font-semibold">Servicios Incluidos</h3>
+    <h3 class="text-3xl mt-10 ml-5 text-rosa font-semibold">Servicios Activos</h3>
     <div class="flex flex-wrap gap-4 mx-auto p-4">
         {serviciosIncluidos.map((servicio) => (
             <div class="border rounded-lg  w-[450px] shadow hover:shadow-lg transition duration-200">
                 <div class="h-28 w-full rounded-t-lg ">
-                    <img src={`/servicios/${servicio.id}.webp`} alt={servicio.nombre} class="w-full h-full object-cover rounded-t-lg"/>
+                    <img src={`/servicios/${servicio.id}.png`} alt={servicio.nombre} class="w-full h-full object-cover rounded-t-lg"/>
                 </div>
                 <div class="p-2">
                     {/* <h2 class="text-xl font-bold mb-2 text-magenta">{servicio.nombre}</h2> */}
@@ -104,13 +121,16 @@ console.log(serviciosIncluidos);
                 
             </div>
         ))}
+        {serviciosIncluidos.length === 0 && (
+            <p class="text-blanco text-lg text-center w-full mt-5">No tienes servicios activos para este proyecto.</p>
+        )}
     </div>
-    <h3 class="text-3xl mt-10 ml-5 text-rosa font-semibold">Servicios No Incluidos</h3>
+    <h3 class="text-3xl mt-10 ml-5 text-rosa font-semibold">Servicios Inactivos</h3>
     <div class="flex flex-wrap gap-4 mx-auto p-4">
         {serviciosNoIncluidos.map((servicio) => (
             <div class="border rounded-lg  w-[450px] shadow hover:shadow-lg transition duration-200">
                 <div class="h-28 w-full rounded-t-lg ">
-                    <img src={`/servicios/${servicio.id}.webp`} alt={servicio.nombre} class="w-full h-full object-cover rounded-t-lg"/>
+                    <img src={`/servicios/${servicio.id}.png`} alt={servicio.nombre} class="w-full h-full object-cover rounded-t-lg"/>
                 </div>
                 <div class="p-2">
                     {/* <h2 class="text-xl font-bold mb-2 text-magenta">{servicio.nombre}</h2> */}

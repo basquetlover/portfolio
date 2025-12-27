@@ -10,10 +10,10 @@ import {PROYECTOS} from "@const/proyectos"
                 <img src={`/portadas/${id}.png`} alt={`Portada de la web ${nombre}`} class="w-full rounded-t-lg h-52 object-cover"/>
                 <div class="p-2">
                     <div class="w-full grid grid-cols-[1fr_auto] gap-x-2">
-                         <h4 class="text-xl w-max text-magenta font-medium">{nombre}</h4>
-                         <h5 class={`text-sm flex flex-row items-center font-medium gap-x-1 w-full ${estado === "En Producción" ? 'text-green-600':''} ${estado === "En Desarrollo" ? 'text-orange-600':''}`}><span class={`w-[6px] h-[6px] inline-block rounded-full ${estado === "En Desarrollo" ? 'bg-orange-600':''}`}>&nbsp;</span>{estado}</h5>
+                        <h4 class="text-xl w-max text-magenta font-medium">{nombre}</h4>
+                        <h5 class={`text-sm flex flex-row items-center font-medium gap-x-1 w-full ${estado === "En Producción" ? 'text-green-600':''} ${estado === "En Desarrollo" ? 'text-orange-600':''}`}><span class={`w-[6px] h-[6px] inline-block rounded-full ${estado === "En Desarrollo" ? 'bg-orange-600':''}`}>&nbsp;</span>{estado}</h5>
                     </div>
-                   <div class="flex flex-row gap-x-2 my-1">
+                    <div class="flex flex-row gap-x-2 my-1">
                     {tipo_web && tipo_web.length > 0 && (
                         <span class="text-sm text-rosa font-medium">
                             {tipo_web.map(({ tipo }) => tipo).join(" + ")}
