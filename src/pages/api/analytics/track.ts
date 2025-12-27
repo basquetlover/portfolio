@@ -17,24 +17,29 @@ export async function POST({ request }: { request: Request }) {
   const body = await request.json();
   const { device_id, url, title, search, secret_key } = body;
   console.log('Body recibido:', body);
-  
+
   if (!device_id || !url || !title || !secret_key) {
     return new Response(JSON.stringify({ error: 'Missing required fields' }), { status: 400 });
   }
 
   // Validar proyecto con URL activa y secret_key
   const { data: proyectos } = await supabase
-    .from('proyectos')
-    .select('id, urls, secret_key')
-    .contains('urls', [{ url, activa: true }])
-    .eq('secret_key', secret_key)
-    .limit(1);
+  .from('proyectos')
+  .select('id, urls, secret_key')
+  .eq('secret_key', secret_key);
 
-  if (!proyectos || proyectos.length === 0) {
-    return new Response(JSON.stringify({ error: 'Project not found or invalid secret' }), { status: 400 });
-  }
+if (!proyectos || proyectos.length === 0) {
+  return new Response(JSON.stringify({ error: 'Project not found or invalid secret' }), { status: 400 });
+}
 
-  const proyecto = proyectos[0];
+// Filtrar proyecto que tenga la URL activa
+const proyecto = proyectos.find(p =>
+  p.urls.some((u: any) => u.url === url && u.activa)
+);
+
+if (!proyecto) {
+  return new Response(JSON.stringify({ error: 'Project not found or inactive URL' }), { status: 400 });
+}
   const today = new Date().toISOString().slice(0, 10);
 
   // Comprobar fila existente
