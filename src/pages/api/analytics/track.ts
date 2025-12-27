@@ -2,6 +2,17 @@
 
 import { supabase } from '@utils/supabase';
 
+export async function OPTIONS() {
+  return new Response(null, {
+    status: 204,
+    headers: {
+      'Access-Control-Allow-Origin': '*', // o tu dominio específico
+      'Access-Control-Allow-Methods': 'POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type'
+    }
+  });
+}
+
 export async function POST({ request }: { request: Request }) {
   const body = await request.json();
   const { device_id, url, title, search, secret_key } = body;
