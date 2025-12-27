@@ -19,7 +19,7 @@ export const GET: APIRoute = async ({ url }) => {
     // Lanzar Puppeteer usando Chromium de @sparticuz
     browser = await puppeteer.launch({
       args: chromium.args,
-      defaultViewport: { width: 1280, height: 800 },
+      defaultViewport: { width: 1280, height: 720 },
       executablePath: await chromium.executablePath(),
       headless: true
     });
