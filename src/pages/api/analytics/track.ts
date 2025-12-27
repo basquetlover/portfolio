@@ -2,8 +2,8 @@
 
 import { supabase } from '@utils/supabase';
 import UAParserPkg from 'ua-parser-js';
-const UAParser = UAParserPkg as any;
-// import * as UAParser from 'ua-parser-js';
+//const UAParser = UAParserPkg as any;
+import * as UAParser from 'ua-parser-js';
 export async function OPTIONS() {
   return new Response(null, {
     status: 204,
@@ -48,8 +48,8 @@ export async function POST({ request }: { request: Request }) {
 
     
     // Parsear userAgent
-    const UAParser = require('ua-parser-js');
-    const parser = new UAParser(user_agent);
+    //const UAParser = require('ua-parser-js');
+    const parser = new UAParser(user_agent as string);
     const device_type = parser.getDevice().type || 'desktop';
     const browser_name = parser.getBrowser().name || '';
     const browser_version = parser.getBrowser().version || '';
