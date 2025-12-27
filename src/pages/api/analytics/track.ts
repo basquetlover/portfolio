@@ -27,7 +27,8 @@ export async function POST({ request }: { request: Request }) {
     const { data: proyectos } = await supabase
       .from('proyectos')
       .select('id, urls, secret_key')
-      .eq('secret_key', secret_key);
+      .eq('secret_key', secret_key)
+      .eq('analytics', true);
 
     if (!proyectos || proyectos.length === 0) {
       return new Response(JSON.stringify({ error: 'Project not found or invalid secret' }), { status: 400 });
