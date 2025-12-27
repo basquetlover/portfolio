@@ -1,8 +1,8 @@
 // src/pages/api/analytics/introducir-datos.ts
 
 import { supabase } from '@utils/supabase';
-import UAParserPkg from 'ua-parser-js';
-//const UAParser = UAParserPkg as any;
+// import UAParserPkg from 'ua-parser-js';
+// const UAParser = UAParserPkg as any;
 import * as UAParser from 'ua-parser-js';
 export async function OPTIONS() {
   return new Response(null, {
@@ -18,24 +18,21 @@ export async function OPTIONS() {
 export async function POST({ request }: { request: Request }) {
   try {
     const body = await request.json();
-    const { device_id, url, title, search, secret_key, user_agent, language, timezone } = body;
+    const { device_id, url, title, search, secret_key, user_agent, device_type, language, timezone } = body;
 
     if (!device_id || !url || !title || !secret_key) {
       return new Response(JSON.stringify({ error: 'Missing required fields' }), { status: 400 });
     }
 
-    // Buscar proyecto con ese secret_key
     const { data: proyectos } = await supabase
       .from('proyectos')
       .select('id, urls, secret_key')
-      .eq('secret_key', secret_key)
-      .eq('analytics', true);
+      .eq('secret_key', secret_key);
 
     if (!proyectos || proyectos.length === 0) {
       return new Response(JSON.stringify({ error: 'Project not found or invalid secret' }), { status: 400 });
     }
 
-    // Filtrar proyecto que tenga la URL activa
     const proyecto = proyectos.find(p =>
       p.urls.some((u: any) => u.url === url && u.activa)
     );
@@ -46,16 +43,6 @@ export async function POST({ request }: { request: Request }) {
 
     const today = new Date().toISOString().slice(0, 10);
 
-    
-    // Parsear userAgent
-    //const UAParser = require('ua-parser-js');
-    const parser = new UAParser(user_agent as string);
-    const device_type = parser.getDevice().type || 'desktop';
-    const browser_name = parser.getBrowser().name || '';
-    const browser_version = parser.getBrowser().version || '';
-    const os_name = parser.getOS().name || '';
-    const os_version = parser.getOS().version || '';
-
     const newPage = {
       url,
       title,
@@ -63,15 +50,10 @@ export async function POST({ request }: { request: Request }) {
       timestamp: new Date().toISOString(),
       user_agent,
       device_type,
-      browser_name,
-      browser_version,
-      os_name,
-      os_version,
       language,
       timezone
     };
 
-    // Comprobar fila existente
     const { data: existingRows } = await supabase
       .from('analytics_daily_devices')
       .select('*')
@@ -82,7 +64,7 @@ export async function POST({ request }: { request: Request }) {
     if (existingRows && existingRows.length > 0) {
       const row = existingRows[0];
       const updatedPages = [...row.pages, newPage];
-      const { error: updateError } = await supabase
+      await supabase
         .from('analytics_daily_devices')
         .update({
           last_seen_at: new Date().toISOString(),
@@ -91,10 +73,8 @@ export async function POST({ request }: { request: Request }) {
           pages: updatedPages
         })
         .eq('id', row.id);
-
-      if (updateError) throw updateError;
     } else {
-      const { error: insertError } = await supabase
+      await supabase
         .from('analytics_daily_devices')
         .insert([{
           proyecto_id: proyecto.id,
@@ -106,11 +86,10 @@ export async function POST({ request }: { request: Request }) {
           pageviews_count: 1,
           pages: [newPage]
         }]);
-
-      if (insertError) throw insertError;
     }
 
     return new Response(JSON.stringify({ success: true }), { status: 200 });
+
   } catch (err: any) {
     console.error('Analytics API error:', err);
     return new Response(JSON.stringify({ error: err.message || 'Internal error' }), { status: 500 });
