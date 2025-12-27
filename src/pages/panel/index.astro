@@ -29,15 +29,19 @@ const extraUrls = totalUrls > 1 ? totalUrls - 1 : 0;
     {
         proyectoSeleccionadoID ? (<>
             <section class="max-w-4xl mx-auto w-auto h-auto p-2">
-                <div>
-                       {urlPrincipal?.startsWith("https://") && (
+                <div class="grid grid-cols-[auto_1fr] gap-x-2">
+                    <div class="w-72 aspect-[16/9] flex items-center place-content-center bg-rosa/30 rounded relative">
+                        {urlPrincipal?.startsWith("https://") && (
+                            <p>Cargando Imagen...</p>
                             <img
                                 src={`/api/screenshot.png?url=${encodeURIComponent(urlPrincipal)}`}
                                 alt="Preview web"
                                 loading="lazy"
-                                class="w-10 h-10"
+                                class="w-full h-full rounded absolute top-0 left-0 object-cover"
                             />
                         )}
+                    </div>
+                       
                     <div class="flex flex-col gap-y-2">
                         <h1 class="text-4xl font-bold text-magenta">{proyectoSeleccionado?.nombre}</h1>
                         <div class="flex flex-row items-center gap-x-4">
