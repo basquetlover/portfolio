@@ -47,17 +47,22 @@ let usuario = await verificarSesion(Astro.request);
         {
             usuario ? (<>
                 <div class="h-dvh grid grid-cols-[auto_1fr] grid-rows-[auto_1fr] overflow-hidden">
-					<div class="col-span-2">
+					<div class="col-span-2 flex flex-row items-center gap-x-4 w-[98%] mx-auto border-magenta border-b-2">
+						<span id="btn-MenuDesktop" class="w-max h-max p-2 hover:bg-rosa/50 rounded-full cursor-pointer">
+							<svg xmlns="http://www.w3.org/2000/svg" class="w-9 h-9" viewBox="0 -960 960 960">
+								<path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/>
+							</svg>
+						</span>
 						<Hero />
 					</div>
 
-					<div class="row-start-2 flex relative items-center place-content-center">
+					<div id="MenuDesktop" class="row-start-2 flex relative items-center place-content-center">
 						<div class="h-[98%]">
 							<Menu />
 						</div>
 					</div>
 
-					<div class="row-start-2  grid grid-rows-[1fr_auto] overflow-y-auto min-h-0">
+					<div class="row-start-2 col-start-2 grid grid-rows-[1fr_auto] overflow-y-auto min-h-0">
 						<main class="w-full mx-auto ">
 							<slot />
 						</main>
@@ -83,7 +88,20 @@ let usuario = await verificarSesion(Astro.request);
         
 	</body>
 </html>
+<script>
+	const btnMenuDesktop = document.getElementById('btn-MenuDesktop')!;
+	const menuDesktop = document.getElementById('MenuDesktop')!;
 
+	btnMenuDesktop.addEventListener('click', () => {
+		if (menuDesktop.classList.contains('hidden')) {
+			menuDesktop.classList.remove('hidden');
+			menuDesktop.classList.add('flex');
+		} else {
+			menuDesktop.classList.add('hidden');
+			menuDesktop.classList.remove('flex');
+		}
+	});
+</script>
 <style>
 	html,
 	body {
