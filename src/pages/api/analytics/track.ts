@@ -18,7 +18,7 @@ export async function OPTIONS() {
 export async function POST({ request }: { request: Request }) {
   try {
     const body = await request.json();
-    const { device_id, url, title, search, secret_key, user_agent, device_type, language, timezone } = body;
+    const { device_id, url, title, search, secret_key, browser, os, country, region, device_type, language, timezone } = body;
 
     if (!device_id || !url || !title || !secret_key) {
       return new Response(JSON.stringify({ error: 'Missing required fields' }), { status: 400 });
@@ -49,7 +49,10 @@ export async function POST({ request }: { request: Request }) {
       title,
       search: search || '',
       timestamp: new Date().toISOString(),
-      user_agent,
+      browser,
+      os,
+      country,
+      region,
       device_type,
       language,
       timezone
@@ -68,6 +71,11 @@ export async function POST({ request }: { request: Request }) {
       await supabase
         .from('analytics_daily_devices')
         .update({
+          language: language || 'Unknown',
+          device_type: device_type || 'Unknown',
+          country: country || 'Unknown',
+          browser_name: browser || 'Unknown',
+          os_name: os || 'Unknown',
           last_seen_at: new Date().toISOString(),
           last_login: new Date().toISOString(),
           pageviews_count: row.pageviews_count + 1,
@@ -81,6 +89,11 @@ export async function POST({ request }: { request: Request }) {
           proyecto_id: proyecto.id,
           device_id,
           date: today,
+          language: language || 'Unknown',
+          device_type: device_type || 'Unknown',
+          country: country || 'Unknown',
+          browser_name: browser || 'Unknown',
+          os_name: os || 'Unknown',
           first_seen_at: new Date().toISOString(),
           last_seen_at: new Date().toISOString(),
           last_login: new Date().toISOString(),
