@@ -86,7 +86,7 @@ export const SERVICIOS = [
 
   {
     id: "emails",
-    nombre: "Emails Transaccionales",
+    nombre: "Emails",
     descripcion:
       "Sistema de envío de correos automáticos para notificaciones y confirmaciones.",
     tecnologia: "Resend",
@@ -273,3 +273,43 @@ export const SERVICIOS = [
     ]
   }
 ];
+
+
+export const SERVICIOS_ICONOS = [
+  {
+    id: "database",
+    nombre: "Base de Datos",
+  },
+  {
+    id: "hosting",
+    nombre: "Hosting y Despliegue",
+  },
+  {
+    id: "emails",
+    nombre: "Emails",
+  },
+  {
+    id: "storage",
+    nombre: "Almacenamiento de Archivos",
+  },
+  {
+    id: "payments",
+    nombre: "Pagos y Suscripciones",
+  },
+  {
+    id: "auth",
+    nombre: "Autenticación de Usuarios",
+  },
+  {
+    id: "newsletter",
+    nombre: "Newsletter",
+  },
+  {
+    id: "discord_bot",
+    nombre: "Bot de Discord",
+  },
+  {
+    id: "maintenance",
+    nombre: "Mantenimiento y Soporte",
+  }
+]
