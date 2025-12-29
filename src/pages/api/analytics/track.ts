@@ -18,7 +18,7 @@ export async function OPTIONS() {
 export async function POST({ request }: { request: Request }) {
   try {
     const body = await request.json();
-    const { device_id, url, title, search, secret_key, browser, os, country, region, device_type, language, timezone } = body;
+    const { device_id, url, pathname, title, search, secret_key, browser, os, country, region, device_type, language, timezone } = body;
 
     if (!device_id || !url || !title || !secret_key) {
       return new Response(JSON.stringify({ error: 'Missing required fields' }), { status: 400 });
@@ -46,6 +46,7 @@ export async function POST({ request }: { request: Request }) {
 
     const newPage = {
       url,
+      pathname,
       title,
       search: search || '',
       timestamp: new Date().toISOString(),
