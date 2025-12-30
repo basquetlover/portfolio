@@ -1,0 +1,119 @@
+---
+import RastrearDom from "@components/panel/RastrearDom";
+import Layout from "@layouts/Layout.astro";
+import LayoutPanel from "@layouts/LayoutPanel.astro";
+
+import { proyectosUsuario } from "@utils/proyectoSeleccionado";
+import { supabase } from "@utils/supabase";
+
+const proyectos = await proyectosUsuario(Astro.request);
+
+const url = new URL(Astro.request.url);
+const proyectoSeleccionadoID = url.searchParams.get("proyectoID");
+
+const proyectoSeleccionado =
+    proyectos.find(p => p.id === proyectoSeleccionadoID) ?? null;
+//console.log("proyectoSeleccionadoID:", proyectoSeleccionadoID);
+if(!proyectoSeleccionadoID ) {
+  // Redirigir al primer proyecto si no hay ninguno seleccionado
+    return Astro.redirect("/panel");
+}
+const dominiosPrincipales = proyectoSeleccionado.urls.filter((d: { tipo: string; }) => d.tipo === 'dominio');
+const subdominios = proyectoSeleccionado.urls.filter((d: { tipo: string; }) => d.tipo === 'subdominio');
+
+---
+<LayoutPanel title="Dominios - Panel de Administración - Pere Alemany | Full-Stack Developer">
+    <section class="max-w-7xl mx-auto w-auto h-auto p-2">
+        
+        
+        <div class="mt-8">
+            <h2 class="text-4xl text-magenta font-semibold mb-4">Dominios Principales</h2>
+            <div class="flex flex-col w-full h-auto">
+                
+            
+                {dominiosPrincipales.length > 0 ? (
+                    <div class="w-max mx-auto font-semibold text-azul grid bg-rosa p-2 rounded grid-cols-[250px_100px_100px_100px_100px_100px_120px_100px_150px] gap-x-1">
+                        <p>Dominio</p>
+                        <p>Ext.</p>
+                        <p>Estado</p>
+                        <p>Princiapl</p>
+                        <p>Creado</p>
+                        <p>Caduca</p>
+                        <p>Renovación</p>
+                        <p>Precio</p>
+                        <p>Proveedor</p>
+                    </div>
+
+                    <div class="flex flex-col gap-y-2">
+                        {dominiosPrincipales.map((dominio: { nombre: unknown; extension: unknown; estado: unknown; principal: any; creado: unknown; caduca: any; renovacion: unknown; precio_texto: unknown; proveedor: unknown; url: string;  }) => (
+                            <div class="w-max mx-auto text-blanco grid border-b border-magenta  p-2  grid-cols-[250px_100px_100px_100px_100px_100px_120px_100px_150px] gap-x-1 items-center">
+                                <a href={`https://${dominio.url}`} target="_blank" class="hover:text-rosa duration-300 flex flex-row gap-x-1 items-center hover:fill-rosa">
+                                    {dominio.nombre}
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 -960 960 960">
+                                            <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z"/>
+                                        </svg>
+                                    </span>
+                                </a>
+                                <p>{dominio.extension}</p>
+                                <p>{dominio.estado}</p>
+                                <p>{dominio.principal ? "Sí" : "No"}</p>
+                                <p>{dominio.creado}</p>
+                                <p>{dominio.caduca ? dominio.caduca : "N/A"}</p>
+                                <p>{dominio.renovacion}</p>
+                                <p>{dominio.precio_texto}</p>
+                                <img src={`/proveedores/${dominio.proveedor}.svg`} alt="Proveedor Logo" class="w-auto h-5"/>
+                            </div>
+                        ))}
+                    </div>
+                ) : (
+                    <p class="text-lg text-center">No hay dominios principales configurados.</p>
+                )}
+            </div>
+        </div>
+
+        <div class="mt-8">
+            <h2 class="text-4xl text-magenta font-semibold mb-4">Subdominios</h2>
+            <div class="flex flex-col w-full h-auto">
+                
+            {subdominios.length > 0 ? (
+                <>
+                <div class="w-max mx-auto font-semibold text-azul grid bg-rosa p-2 rounded grid-cols-[250px_100px_100px_100px_100px_100px_120px_100px_150px] gap-x-1">
+                    <p>Dominio</p>
+                    <p>Ext.</p>
+                    <p>Estado</p>
+                    <p>Princiapl</p>
+                    <p>Creado</p>
+                    <p>Caduca</p>
+                    <p>Renovación</p>
+                    <p>Precio</p>
+                    <p>Proveedor</p>
+                </div>
+                
+                    {subdominios.map((subdominio: { url: string; nombre: string; extension: string; estado: string; principal: boolean; creado: string; caduca: string; renovacion: string; precio_texto: string; proveedor: string; }) => (
+                        <div class="w-max mx-auto text-blanco grid border-b border-magenta  p-2  grid-cols-[250px_100px_100px_100px_100px_100px_120px_100px_150px] gap-x-1 items-center">
+                                <a href={`https://${subdominio.url}`} target="_blank" class="hover:text-rosa fill-blanco duration-300 flex flex-row gap-x-1 items-center hover:fill-rosa">
+                                    {subdominio.nombre}
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 -960 960 960">
+                                            <path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z"/>
+                                        </svg>
+                                    </span>
+                                </a>
+                                <p>{subdominio.extension}</p>
+                                <p>{subdominio.estado}</p>
+                                <p>{subdominio.principal ? "Sí" : "No"}</p>
+                                <p>{subdominio.creado}</p>
+                                <p>{subdominio.caduca ? subdominio.caduca : "N/A"}</p>
+                                <p>{subdominio.renovacion}</p>
+                                <p>{subdominio.precio_texto}</p>
+                                <img src={`/proveedores/${subdominio.proveedor}.svg`} alt="Proveedor Logo" class="w-auto h-5"/>
+                            </div>
+                    ))}
+                </>
+            ) : (
+                <p class="text-lg text-center">No hay subdominios configurados.</p>
+            )}
+        </div>
+        <RastrearDom client:load/>
+    </section>

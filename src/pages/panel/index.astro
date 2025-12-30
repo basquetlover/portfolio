@@ -52,6 +52,23 @@ const serviciosPlanSet = new Set(plan.map((p: any) => p.servicio));
 const serviciosIncluidos = SERVICIOS_ICONOS.filter(s =>
     serviciosPlanSet.has(s.id)
 );
+let AnalyticsEnabled = false;
+if(proyectoSeleccionado?.analytics === true){
+    AnalyticsEnabled = true;
+}
+//console.log("AnalyticsEnabled:", proyectoSeleccionado.historial_progreso);
+let roadmapVisible = [];
+if(proyectoSeleccionado?.historial_progreso && proyectoSeleccionado?.historial_progreso.length > 0){
+    roadmapVisible = proyectoSeleccionado.historial_progreso.slice(-3).reverse();
+}
+
+
+const formatearFecha = (fechaISO: string | Date | null | undefined) => {
+  if (!fechaISO) return "";
+  const fecha = new Date(fechaISO);
+  return fecha.toLocaleDateString("es-ES");
+};
+
 
 ---
 
@@ -91,6 +108,20 @@ const serviciosIncluidos = SERVICIOS_ICONOS.filter(s =>
                                 }
                             </div>
                         </div>
+                        {
+                            proyectoSeleccionado?.repositorio_github && (
+                                <div class="mt-4">
+                                    <p class="mt-2 text-rosa">Repositorio GitHub</p>
+                                    <a href={proyectoSeleccionado.repositorio_github} target="_blank" class="text-blanco flex flex-row items-center gap-x-1 bg-rosa/30 w-max px-2 py-1 rounded-full  text-xs hover:text-rosa hover:fill-rosa duration-300">
+                                        <span>
+                                            <img src="/iconos/github.svg" alt="GitHub Logo" class="w-4 h-4"/>
+                                        </span>
+                                        {proyectoSeleccionado.repositorio_github}
+                                    </a>
+                                </div>
+                            )
+                        }
+                        
                         
                         
                         <div class="flex flex-row mt-3 gap-x-3">
@@ -147,13 +178,14 @@ const serviciosIncluidos = SERVICIOS_ICONOS.filter(s =>
                             }
                             {
                                 serviciosIncluidos.length === 0 && (
-                                    <div class="col-span-3 row-span-2 flex flex-col items-center">
+                                    <div class="col-span-3 row-span-2 flex flex-col gap-y-4 items-center">
                                         <span>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="w-14 h-14" viewBox="0 -960 960 960">
                                                 <path d="M250-320h60v-10q0-71 49.5-120.5T480-500q71 0 120.5 49.5T650-330v10h60v-10q0-96-67-163t-163-67q-96 0-163 67t-67 163v10Zm34-270q41-6 86.5-32t72.5-59l-46-38q-20 24-55.5 44T276-650l8 60Zm392 0 8-60q-30-5-65.5-25T563-719l-46 38q27 33 72.5 59t86.5 32ZM480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-400Zm0 320q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Z"/>
                                             </svg>
                                         </span>
                                         <p class="text-lg text-center">No tienes servicios activos <br/> para este proyecto.</p>
+                                        <a href={`/panel/servicios?proyectoID=${proyectoSeleccionadoID}`} class="bg-magenta text-blanco px-4 py-2 rounded hover:bg-rosa duration-300">Ver Servicios</a>
                                     </div>
                                     
                                 )
@@ -162,8 +194,77 @@ const serviciosIncluidos = SERVICIOS_ICONOS.filter(s =>
                         
                     </div>
                     {/* Estadistica */}
-                    <Resumen proyectoID={proyectoSeleccionadoID} client:only="react"/>
-                    
+                    <div class="relative h-72 p-2 rounded border border-rosa ">
+                        {
+                            AnalyticsEnabled ? (
+                                <Resumen proyectoID={proyectoSeleccionadoID} dias={7} client:only="react"/>
+                            ) : (
+                                <div class="w-full h-full flex flex-col items-center justify-center gap-y-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" viewBox="0 -960 960 960">
+                                        <path d="M120-120v-80l80-80v160h-80Zm160 0v-240l80-80v320h-80Zm160 0v-320l80 81v239h-80Zm160 0v-239l80-80v319h-80Zm160 0v-400l80-80v480h-80ZM120-327v-113l280-280 160 160 280-280v113L560-447 400-607 120-327Z"/>
+                                    </svg>
+                                    <p class="text-center text-lg">Las estadísticas no están habilitadas para este proyecto.</p>
+                                    <a href={`/panel/servicios?proyectoID=${proyectoSeleccionadoID}`} class="bg-magenta text-blanco px-4 py-2 rounded hover:bg-rosa duration-300">Habilitar Estadísticas</a>
+                                </div>
+                            )
+                        }
+                        
+                    </div>
+
+                    <div class="h-72 p-2 rounded border border-rosa">
+                        <a href={`/panel/servicios?proyectoID=${proyectoSeleccionadoID}`} class="font-semibold text-xl hover:text-magenta duration-300">Evolución del proyecto</a>
+                        <div class="flex flex-col gap-y-2">
+                            {roadmapVisible.map((item: any, index: number) => {
+                            //const esUltimo = index === roadmapVisible.length - 1;
+
+                            return (
+                                <div class="flex gap-x-4">
+                                {/* Columna estado */}
+                                <div class="flex flex-col items-center">
+                                    {item.estado === "completado" ? (
+                                    <svg viewBox="0 0 24 24" class="w-3 h-3 fill-rosa">
+                                        <circle cx="12" cy="12" r="10" />
+                                    </svg>
+                                    ) : (
+                                    <svg viewBox="0 0 24 24" class="w-3 h-3 stroke-magenta fill-none">
+                                        <circle cx="12" cy="12" r="9" stroke-width="2" />
+                                    </svg>
+                                    )}
+
+                                    
+                                    <div
+                                        class={`flex-1 w-px ${
+                                        item.estado === "completado"
+                                            ? "bg-rosa"
+                                            : "border-l border-dashed border-magenta"
+                                        }`}
+                                    ></div>
+                                </div>
+
+                                {/* Contenido */}
+                                <div class="pb-2">
+                                    <p class="font-medium">{item.titulo}</p>
+                                    <p class="text-sm opacity-70">{item.descripcion}</p>
+                                    <p class="text-xs opacity-50 mt-1">
+                                    {formatearFecha(item.fecha)}
+                                    </p>
+                                </div>
+                                </div>
+                            );
+                            })}
+                        </div>
+                        {
+                            roadmapVisible.length === 0 && (
+                                <div class="w-full h-full flex flex-col items-center justify-center gap-y-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" viewBox="0 -960 960 960">
+                                        <path d="M296-270q-42 35-87.5 32T129-269q-34-28-46.5-73.5T99-436l75-124q-25-22-39.5-53T120-680q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47q-9 0-18-1t-17-3l-77 130q-11 18-7 35.5t17 28.5q13 11 31 12.5t35-12.5l420-361q42-35 88-31.5t80 31.5q34 28 46 73.5T861-524l-75 124q25 22 39.5 53t14.5 67q0 66-47 113t-113 47q-66 0-113-47t-47-113q0-66 47-113t113-47q9 0 17.5 1t16.5 3l78-130q11-18 7-35.5T782-630q-13-11-31-12.5T716-630L296-270Zm-16-330q33 0 56.5-23.5T360-680q0-33-23.5-56.5T280-760q-33 0-56.5 23.5T200-680q0 33 23.5 56.5T280-600Zm400 400q33 0 56.5-23.5T760-280q0-33-23.5-56.5T680-360q-33 0-56.5 23.5T600-280q0 33 23.5 56.5T680-200ZM280-680Zm400 400Z"/>
+                                    </svg>
+                                    <p class="text-center text-lg">Aún no hay evolución registrada <br/> para este proyecto.</p>
+                                </div>
+                            )
+                        }
+                        </div>
+
                 </div>
             </section>
         </>):(

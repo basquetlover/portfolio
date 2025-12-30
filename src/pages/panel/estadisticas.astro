@@ -1,0 +1,73 @@
+---
+import Resumen from "@components/panel/analytics/Resumen.tsx";
+import LayoutPanel from "@layouts/LayoutPanel.astro";
+
+import { proyectosUsuario } from "@utils/proyectoSeleccionado";
+import { supabase } from "@utils/supabase";
+
+const proyectos = await proyectosUsuario(Astro.request);
+
+const url = new URL(Astro.request.url);
+const proyectoSeleccionadoID = url.searchParams.get("proyectoID");
+const analyticsDias = url.searchParams.get("dias") || 7;
+//console.log("proyectoSeleccionadoID:", proyectoSeleccionadoID);
+if(!proyectoSeleccionadoID ) {
+  // Redirigir al primer proyecto si no hay ninguno seleccionado
+    return Astro.redirect("/panel");
+}
+
+const today = new Date();
+today.setHours(0, 0, 0, 0);
+
+const startDate = new Date(today);
+startDate.setDate(today.getDate() - (Number(analyticsDias) - 1));
+
+const { data: Estadistica, error } = await supabase
+    .from("analytics_daily_devices")
+    .select("*")
+    .eq("proyecto_id", proyectoSeleccionadoID)
+    .gte("last_seen_at", startDate.toISOString())
+    .lte("last_seen_at", new Date().toISOString());
+
+function getPageUserViews(data: any[]) {
+  const pageUsersMap = new Map();
+
+  for (const row of data) {
+    const { device_id, date, pages } = row;
+
+    for (const page of pages) {
+      const pageUrl = page.url;
+
+      if (!pageUsersMap.has(pageUrl)) {
+        pageUsersMap.set(pageUrl, new Set());
+      }
+
+      // clave única por usuario + día
+      const uniqueUserKey = `${device_id}-${date}`;
+      pageUsersMap.get(pageUrl).add(uniqueUserKey);
+    }
+  }
+
+  // convertir al formato final
+  return Array.from(pageUsersMap.entries()).map(
+    ([page, users]) => ({
+      page,
+      user_view: users.size
+    })
+  );
+}
+console.dir(Estadistica, { depth: null });
+const result = getPageUserViews(Estadistica ?? []);
+console.log(result);
+
+ // Reemplaza con el dominio que deseas verificar
+
+---
+
+<LayoutPanel title="Estadísticas - Panel de Administración - Pere Alemany | Full-Stack Developer">
+<section class="max-w-7xl mx-auto w-auto h-auto p-2">
+    <div class="w-full h-96">
+        <Resumen proyectoID={proyectoSeleccionadoID} dias={Number(analyticsDias)} alturaGrafico="h-96" client:load />
+    </div>
+</section>
+</LayoutPanel>

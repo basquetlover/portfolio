@@ -69,7 +69,7 @@ count = data?.filter((row: any) => {
     resultado.push({ dia: diaFormateado, user_count: count });
     }
 
-    console.log(resultado);
+    //console.log(resultado);
     return new Response(JSON.stringify(resultado), { status: 200 });
 } catch (err) {
     console.error(err);
